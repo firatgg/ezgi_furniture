@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domains", "Domains", "{5207C8D2-EE9B-4DAD-AA70-33ED295389BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastructures", "{07022428-AC9D-44FE-9733-903FD1A8F813}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6740A0C7-BC5D-4E86-A3BF-052D1DA41D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{4F29AF94-5C30-46CE-95ED-02365535D9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{69A453F4-6182-4376-A772-6C667A776AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ezgi_mobilya", "ezgi_mobilya\ezgi_mobilya.csproj", "{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F29AF94-5C30-46CE-95ED-02365535D9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F29AF94-5C30-46CE-95ED-02365535D9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F29AF94-5C30-46CE-95ED-02365535D9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F29AF94-5C30-46CE-95ED-02365535D9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A453F4-6182-4376-A772-6C667A776AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A453F4-6182-4376-A772-6C667A776AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A453F4-6182-4376-A772-6C667A776AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A453F4-6182-4376-A772-6C667A776AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4F29AF94-5C30-46CE-95ED-02365535D9AB} = {5207C8D2-EE9B-4DAD-AA70-33ED295389BD}
+		{FCC2DB6D-DC70-42EB-B448-CEAA38D910BC} = {07022428-AC9D-44FE-9733-903FD1A8F813}
+		{69A453F4-6182-4376-A772-6C667A776AE1} = {07022428-AC9D-44FE-9733-903FD1A8F813}
+		{717BE863-AE3A-4E0A-8C05-3DBCE46CDB82} = {6740A0C7-BC5D-4E86-A3BF-052D1DA41D77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1BACED4-510D-41D6-9880-334DCB6A5B7D}
+	EndGlobalSection
+EndGlobal
