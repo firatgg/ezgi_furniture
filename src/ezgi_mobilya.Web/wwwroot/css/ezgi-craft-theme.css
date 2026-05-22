@@ -1,0 +1,460 @@
+/*
+    Ezgi Craft Premium Brand Theme Style Overrides
+    Earthy Craft Palette (Terracotta, Sage Green, Sand Cream, Charcoal Wood)
+    Includes Dark/Light Mode with smooth transitions
+    Minimalist design guidelines (Plus Jakarta Sans & Inter typography)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* LIGHT MODE - Earthy Premium Crafts */
+  --bg-primary: #FAF6F0;       /* Warm linen cream */
+  --bg-secondary: #F3ECE3;     /* Soft warm clay/sand */
+  --bg-card: #FFFFFF;          /* Pure card white */
+  --bg-navbar-scroll: rgba(250, 246, 240, 0.95);
+  --bg-navbar-border: #E6DDD5;
+  
+  --text-primary: #2C2520;     /* Rich charcoal wood */
+  --text-secondary: #5E524D;   /* Dark clay grey */
+  --text-muted: #8E7F78;       /* Warm dust grey */
+  --text-white-fixed: #FFFFFF; /* Stays white */
+  
+  --color-primary: #C2541A;    /* Warm Terracotta / Clay orange */
+  --color-primary-rgb: 194, 84, 26;
+  --color-primary-hover: #A03F0F;
+  --color-secondary: #4A6351;  /* Deep Sage Pine / Forest green */
+  --color-secondary-hover: #374F3D;
+  --color-border: #E6DDD5;
+  --shadow-color: rgba(44, 37, 32, 0.05);
+  --shadow-hover: rgba(44, 37, 32, 0.1);
+  
+  --transition-speed: 0.4s;
+}
+
+[data-theme="dark"] {
+  /* DARK MODE - Midnight Wood Cabin */
+  --bg-primary: #110F0D;       /* Obsidian bark */
+  --bg-secondary: #191614;     /* Dark charcoal wood */
+  --bg-card: #221D1B;          /* Rich deep mahogany */
+  --bg-navbar-scroll: rgba(17, 15, 13, 0.95);
+  --bg-navbar-border: #2B211E;
+  
+  --text-primary: #FAF6F0;     /* Soft warm cream */
+  --text-secondary: #D7CEB2;   /* Soft sand gold */
+  --text-muted: #9E928A;       /* Earthy grey */
+  --text-white-fixed: #FFFFFF;
+  
+  --color-primary: #E06C36;    /* Glowing copper terracotta */
+  --color-primary-rgb: 224, 108, 54;
+  --color-primary-hover: #F2855C;
+  --color-secondary: #6B8B77;  /* Soft silver sage */
+  --color-secondary-hover: #83A690;
+  --color-border: #2B211E;
+  --shadow-color: rgba(0, 0, 0, 0.25);
+  --shadow-hover: rgba(0, 0, 0, 0.4);
+}
+
+/* Global Transitions & Fonts */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+body, section, div, h1, h2, h3, h4, h5, h6, p, span, a, input, textarea, button, .navbar, .card {
+  transition: background-color var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), 
+              color var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), 
+              border-color var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle badge look */
+.tm-section-subtitle-badge, .tm-hero-badge {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+/* Button Styling Overrides */
+.tm-btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--text-white-fixed) !important;
+  border: none;
+  border-radius: 4px !important;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.2);
+  transition: all 0.3s ease !important;
+}
+
+.tm-btn-primary:hover,
+.tm-btn-primary:focus {
+  color: var(--text-white-fixed) !important;
+  background-color: var(--color-primary-hover) !important;
+  box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.35);
+  transform: translateY(-2px);
+}
+
+.tm-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Hero Section Split Layout (Apple-style minimalism) */
+#infinite {
+  background: var(--bg-primary) !important;
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Light / Dark Adaptive background decoration for Hero */
+#infinite::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tm-hero-left-content {
+  position: relative;
+  z-index: 10;
+}
+
+.tm-hero-title {
+  font-size: 4rem;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  color: var(--text-primary) !important;
+  text-shadow: none !important;
+}
+
+.tm-hero-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  text-shadow: none !important;
+}
+
+/* Custom Outlined Hero Button */
+.btn-hero-outline {
+  border-color: var(--text-primary) !important;
+  color: var(--text-primary) !important;
+  transition: all 0.3s ease;
+}
+
+.btn-hero-outline:hover {
+  background-color: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Framed image look on right column of hero */
+.tm-hero-image-frame {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px var(--shadow-hover);
+  max-width: 90%;
+  z-index: 5;
+}
+
+.tm-hero-image-frame img {
+  transition: transform 10s ease;
+}
+
+.tm-hero-image-frame:hover img {
+  transform: scale(1.05);
+}
+
+/* Navbar Modernization */
+.tm-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid transparent;
+  padding: 20px 0;
+}
+
+.tm-navbar.scroll {
+  background-color: var(--bg-navbar-scroll) !important;
+  border-bottom: 1px solid var(--bg-navbar-border);
+  box-shadow: 0 4px 30px var(--shadow-color);
+  padding: 12px 0;
+}
+
+.navbar-brand {
+  color: var(--text-primary) !important;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.tm-nav-link {
+  color: var(--text-primary) !important;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px !important;
+  border-radius: 4px;
+}
+
+.tm-nav-link:hover {
+  background-color: rgba(var(--color-primary-rgb), 0.05);
+  color: var(--color-primary) !important;
+}
+
+.tm-navbar.scroll .tm-nav-link:hover,
+.tm-navbar.scroll .tm-nav-link.current {
+  color: var(--text-white-fixed) !important;
+  background-color: var(--color-primary) !important;
+}
+
+/* Toggle Theme Button Modern look */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  margin-left: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(var(--color-primary-rgb), 0.04);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-speed) ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--text-white-fixed) !important;
+  border-color: var(--color-primary);
+  transform: scale(1.08);
+}
+
+/* Feature Grid with big numbers */
+.tm-feature-num {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 200;
+  line-height: 1;
+  color: var(--color-border);
+  letter-spacing: -0.05em;
+  transition: color var(--transition-speed);
+}
+
+.tm-feature-item:hover .tm-feature-num {
+  color: var(--color-primary);
+}
+
+.tm-feature-body p {
+  color: var(--text-secondary);
+}
+
+/* Testimonials / Values Section */
+#testimonials {
+  padding: 100px 0;
+}
+
+/* Testimonial / Value Cards minimal & transparent */
+.tm-trust-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 40px 30px;
+  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tm-trust-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tm-trust-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 25px;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.tm-trust-card h3 {
+  letter-spacing: -0.01em;
+}
+
+.tm-trust-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Premium Gallery Card Redesign */
+#gallery {
+  background-color: var(--bg-secondary);
+  padding: 100px 0;
+}
+
+.tm-gallery-card-link {
+  text-decoration: none !important;
+  display: block;
+}
+
+.tm-gallery-card {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tm-gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px var(--shadow-hover);
+}
+
+.tm-gallery-img-container {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.tm-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tm-gallery-card:hover .tm-gallery-img {
+  transform: scale(1.06);
+}
+
+.tm-gallery-card-info {
+  padding: 20px;
+}
+
+.tm-gallery-card-category {
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.tm-gallery-card-title {
+  color: var(--text-primary) !important;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.tm-gallery-card-price {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+/* Minimalist Form Elements (Zara Home / Apple Look) */
+#contact {
+  padding: 100px 0;
+}
+
+.tm-contact-form-container {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 12px !important;
+  padding: 50px 40px !important;
+  box-shadow: 0 20px 50px var(--shadow-hover) !important;
+}
+
+.tm-minimal-input {
+  background: transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1.5px solid var(--color-border) !important;
+  border-radius: 0 !important;
+  padding: 15px 5px !important;
+  color: var(--text-primary) !important;
+  font-size: 1rem !important;
+  font-family: "Inter", sans-serif;
+  transition: border-color 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+.tm-minimal-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.tm-minimal-input:focus {
+  border-bottom-color: var(--color-primary) !important;
+  background: transparent !important;
+}
+
+/* Arrow Navigation Down circle icon */
+.tm-down-arrow {
+  background-color: rgba(var(--color-primary-rgb), 0.1) !important;
+  color: var(--color-primary) !important;
+  border: 1.5px solid rgba(var(--color-primary-rgb), 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.tm-down-arrow:hover {
+  background-color: var(--color-primary) !important;
+  color: var(--text-white-fixed) !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(3px);
+}
+
+@media (max-width: 991px) {
+  .tm-hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .theme-toggle-btn {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(var(--color-primary-rgb), 0.05);
+  }
+}

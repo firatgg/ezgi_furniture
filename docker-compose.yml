@@ -4,9 +4,9 @@ services:
   ezgi_mobilya.db:
     image: postgres:15
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_DB=ezgi_mobilya_db
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      - POSTGRES_DB=${POSTGRES_DB:-ezgi_mobilya_db}
     ports:
       - "5432:5432"
     volumes:
@@ -20,7 +20,17 @@ services:
       dockerfile: src/ezgi_mobilya.Web/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=ezgi_mobilya.db;Database=ezgi_mobilya_db;Username=postgres;Password=mysecretpassword;
+      - ConnectionStrings__DefaultConnection=Host=ezgi_mobilya.db;Database=${POSTGRES_DB:-ezgi_mobilya_db};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD};
+      - SiteContact__InstagramUrl=${SITE_CONTACT_INSTAGRAM_URL:-}
+      - SiteContact__InstagramLabel=${SITE_CONTACT_INSTAGRAM_LABEL:-}
+      - SiteContact__WhatsAppUrl=${SITE_CONTACT_WHATSAPP_URL:-}
+      - SiteContact__WhatsAppLabel=${SITE_CONTACT_WHATSAPP_LABEL:-}
+      - SiteContact__Email=${SITE_CONTACT_EMAIL:-}
+      - SiteContact__AddressLabel=${SITE_CONTACT_ADDRESS_LABEL:-}
+      - SocialMedia__Instagram__AccessToken=${SOCIALMEDIA_INSTAGRAM_ACCESSTOKEN:-}
+      - SocialMedia__Instagram__BusinessAccountId=${SOCIALMEDIA_INSTAGRAM_BUSINESSACCOUNTID:-}
+      - SocialMedia__Facebook__PageId=${SOCIALMEDIA_FACEBOOK_PAGEID:-}
+      - SocialMedia__Facebook__AccessToken=${SOCIALMEDIA_FACEBOOK_ACCESSTOKEN:-}
     ports:
       - "5000:8080"
     depends_on:

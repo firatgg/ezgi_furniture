@@ -146,8 +146,10 @@ blockquote {
 
 #infinite {
 	background-color: #222;
-  background-image: url(../img/infinite-loop-01.jpg);
+  background-image: linear-gradient(rgba(28, 37, 30, 0.35), rgba(28, 37, 30, 0.35)), url(https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1920&q=80);
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
   min-height: 375px;
   position: relative;
@@ -156,30 +158,6 @@ blockquote {
 @media (min-height: 600px) and (min-width: 1920px) {
   #infinite {
     background-size: cover;
-  }
-}
-
-@media (min-height: 830px) {
-  #infinite {
-    background-position: center -210px;
-  }
-}
-
-@media (min-height: 680px) and (max-height: 829px) {
-  #infinite {
-    background-position: center -300px;
-  }
-}
-
-@media (min-height: 500px) and (max-height: 679px) {
-  #infinite {
-    background-position: center -400px;
-  }
-}
-
-@media (max-height: 499px) {
-  #infinite {
-    background-position: center -450px;
   }
 }
 
@@ -268,16 +246,15 @@ blockquote {
 /* Testimonials */
 #testimonials {
   color: white;
-  background-image: url(../img/infinite-loop-02.jpg);
+  background-image: linear-gradient(rgba(22, 35, 28, 0.8), rgba(22, 35, 28, 0.8)), url(https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1920&q=80);
   background-size: cover;
   background-repeat: no-repeat;
-  background-size: 100%;
   position: relative;
 }
 
 @media (max-width: 991px) {
   #testimonials {
-    background-image: url(../img/infinite-loop-02-mobile.jpg);
+    background-image: linear-gradient(rgba(22, 35, 28, 0.82), rgba(22, 35, 28, 0.82)), url(https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1920&q=80);
   }
 }
 
@@ -318,6 +295,45 @@ blockquote {
   text-align: right;
   font-style: italic;
   font-size: 1.1rem;
+}
+
+.tm-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 55px auto 25px;
+  max-width: 1050px;
+}
+
+.tm-trust-item {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 28px 24px;
+  min-height: 230px;
+  backdrop-filter: blur(4px);
+}
+
+.tm-trust-item i {
+  display: block;
+  font-size: 2.2rem;
+  margin-bottom: 22px;
+}
+
+.tm-trust-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+}
+
+.tm-trust-item p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .tm-trust-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Work */
@@ -514,9 +530,10 @@ figure.effect-honey:hover h2 i {
 #contact {
   color: white;
   background-color: #001828;
-  background-image: url(../img/infinite-loop-03.jpg);
+  background-image: linear-gradient(rgba(17, 28, 25, 0.85), rgba(17, 28, 25, 0.85)), url(https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80);
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   min-height: 980px;
   position: relative;
   padding-bottom: 50px;
@@ -542,6 +559,11 @@ figure.effect-honey:hover h2 i {
 .item-link:hover i,
 .item-link:hover span {
   color: #3496d8;
+}
+
+.tm-contact-visual {
+  max-width: 250px;
+  border: 5px solid white;
 }
 
 .tm-input {

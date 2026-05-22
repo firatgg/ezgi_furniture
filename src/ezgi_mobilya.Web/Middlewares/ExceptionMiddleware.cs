@@ -7,11 +7,16 @@ namespace ezgi_mobilya.Web.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly IWebHostEnvironment _environment;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+        public ExceptionMiddleware(
+            RequestDelegate next,
+            ILogger<ExceptionMiddleware> logger,
+            IWebHostEnvironment environment)
         {
             _next = next;
             _logger = logger;
+            _environment = environment;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -32,12 +37,16 @@ namespace ezgi_mobilya.Web.Middlewares
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var response = new
+            var response = new Dictionary<string, object?>
             {
-                StatusCode = context.Response.StatusCode,
-                Message = "Sunucu tarafında bir hata oluştu.",
-                Detailed = exception.Message // Sadece development için detay verilebilir ama şimdilik ekleyelim.
+                ["StatusCode"] = context.Response.StatusCode,
+                ["Message"] = "Sunucu tarafında bir hata oluştu."
             };
+
+            if (_environment.IsDevelopment())
+            {
+                response["Detailed"] = exception.Message;
+            }
 
             return context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }

@@ -1,0 +1,116 @@
+@model IEnumerable<ezgi_mobilya.Service.DTOs.SocialPostDto>
+@{
+    ViewData["Title"] = "Yönetim Paneli Özet";
+    Layout = "~/Views/Shared/_Layout.Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4" style="font-weight: 700;">Ezgi Craft Mağaza Özeti</h2>
+    </div>
+</div>
+
+<!-- Stat Cards -->
+<div class="row">
+    <div class="col-md-6 col-lg-3">
+        <div class="admin-card text-center">
+            <i class="fas fa-boxes stat-icon mb-3"></i>
+            <h4 class="text-muted small uppercase font-weight-bold">Aktif Ürünler</h4>
+            <h2 class="mb-0" style="font-weight: 800; color: var(--color-primary);">@ViewBag.ProductCount</h2>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="admin-card text-center">
+            <i class="fas fa-tags stat-icon mb-3" style="color: var(--color-secondary);"></i>
+            <h4 class="text-muted small uppercase font-weight-bold">Kategoriler</h4>
+            <h2 class="mb-0" style="font-weight: 800;">@ViewBag.CategoryCount</h2>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="admin-card text-center">
+            <i class="fas fa-envelope stat-icon mb-3" style="color: #ffc107;"></i>
+            <h4 class="text-muted small uppercase font-weight-bold">Gelen Mesajlar</h4>
+            <h2 class="mb-0" style="font-weight: 800;">@ViewBag.MessageCount</h2>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="admin-card text-center">
+            <i class="fab fa-instagram stat-icon mb-3" style="color: #e1306c;"></i>
+            <h4 class="text-muted small uppercase font-weight-bold">Sosyal Paylaşımlar</h4>
+            <h2 class="mb-0" style="font-weight: 800;">@ViewBag.SocialPostCount</h2>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Posts and Quick Link -->
+<div class="row mt-4">
+    <div class="col-lg-8">
+        <div class="admin-card">
+            <h3 class="h5 mb-4" style="font-weight: 700; color: var(--color-primary);"><i class="fab fa-instagram mr-2"></i> Son Yapılan Paylaşımlar</h3>
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table admin-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Açıklama</th>
+                                <th>Durum</th>
+                                <th>Tarih</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var post in Model.Take(5))
+                            {
+                                <tr>
+                                    <td>
+                                        @foreach (var platform in post.Platforms.Split(','))
+                                        {
+                                            @if (platform.Trim() == "Instagram")
+                                            {
+                                                <span class="badge badge-danger mr-1" style="background-color: #e1306c;"><i class="fab fa-instagram mr-1"></i> Instagram</span>
+                                            }
+                                            else if (platform.Trim() == "Facebook")
+                                            {
+                                                <span class="badge badge-primary mr-1" style="background-color: #1877f2;"><i class="fab fa-facebook-f mr-1"></i> Facebook</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                            @post.Caption
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if (post.IsPosted)
+                                        {
+                                            <span class="badge badge-success" style="background-color: #28a745;"><i class="fas fa-check mr-1"></i> Paylaşıldı</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger" style="background-color: #dc3545;" title="@post.ErrorMessage"><i class="fas fa-times mr-1"></i> Hata</span>
+                                        }
+                                    </td>
+                                    <td>@post.CreatedDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-muted mb-0 py-4 text-center">Henüz otomatik sosyal medya gönderisi atılmadı.</p>
+            }
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="admin-card text-center h-100 d-flex flex-column justify-content-center align-items-center">
+            <i class="fab fa-telegram-plane mb-3" style="font-size: 3.5rem; color: var(--color-primary);"></i>
+            <h4 style="font-weight: 700;">Hızlı Sosyal Post</h4>
+            <p class="text-muted small px-3">Marka hesaplarınızda hemen bir gönderi, duyuru veya el emeği tasarım paylaşın.</p>
+            <a href="/Admin/SocialMedia" class="btn btn-primary tm-btn-primary px-4 py-2 mt-2 w-75">Paylaşım Ekranı</a>
+        </div>
+    </div>
+</div>

@@ -24,6 +24,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 Log/
+Logs/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -124,3 +125,4 @@ Thumbs.db
 
 # App settings
 appsettings.Development.json
+.env

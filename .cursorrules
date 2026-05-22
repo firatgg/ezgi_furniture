@@ -1,0 +1,74 @@
+# Ezgi Furniture - Cursor Geliştirme Kuralları (Turkish)
+
+Bu kurallar, Ezgi Mobilya projesinde kod üretirken, hata ayıklarken ve tasarım yaparken Cursor AI'ın uyması gereken standartları tanımlar.
+
+---
+
+## 1. Genel Mimari ve Proje Yapısı
+
+Proje, 4 katmanlı (N-Tier) temiz bir mimari üzerine kuruludur. Yeni kod eklerken mutlaka ilgili katmanın sorumluluklarına sadık kalın:
+
+*   **ezgi_mobilya.Core (Çekirdek Katman):** 
+    *   Entity tanımları (`Entities/`), repository arayüzleri (`Repositories/`) ve UnitOfWork arayüzleri buradadır.
+    *   Bu katmanda hiçbir harici kütüphane bağımlılığı (EF Core vb.) olmamalıdır. Temiz C# sınıfları olmalıdır.
+    *   Tüm entity'ler `BaseEntity` sınıfından türetilmelidir.
+
+*   **ezgi_mobilya.Data (Veri Erişim Katmanı):**
+    *   EF Core, DbContext (`AppDbContext`), Migrations ve Repository somut sınıfları (`ProductRepository` vb.) buradadır.
+    *   Veritabanı sağlayıcısı olarak **PostgreSQL (Npgsql)** kullanılmaktadır. SQL yazarken veya sorgu yaparken PostgreSQL uyumluluğuna dikkat edilmelidir.
+
+*   **ezgi_mobilya.Service (İş Mantığı Katmanı):**
+    *   DTO'lar, AutoMapper profilleri, FluentValidation doğrulayıcıları (`ProductDtoValidator` vb.) ve Business servisleri buradadır.
+    *   Doğrulama kuralları için mutlaka `FluentValidation` kullanılmalı ve `DtoValidator` standartları takip edilmelidir.
+
+*   **ezgi_mobilya.Web (Sunum Katmanı):**
+    *   Controller'lar, View'lar (`.cshtml`), Middleware'ler (`ExceptionMiddleware`), wwwroot statik dosyaları ve `Program.cs` buradadır.
+
+---
+
+## 2. Frontend ve Tasarım Standartları (Kritik)
+
+Ön yüz (frontend) geliştirme yaparken şu kurallara kesinlikle uyulmalıdır:
+
+*   **Ana Web Sitesi Tasarımı:**
+    *   Ana sayfa ve ziyaretçi açık sayfaları `Views/Shared/_Layout.InfiniteLoop.cshtml` layout'unu miras almalıdır.
+    *   Tasarımda `wwwroot/themes/infinite-loop/` klasöründeki CSS ve JS dosyaları kullanılmalıdır. Yeni CSS eklemek yerine öncelikle `tooplate-infinite-loop.css` içindeki mevcut sınıflar ve Bootstrap sınıfları tercih edilmelidir.
+    
+*   **Admin Paneli Tasarımı:**
+    *   Yönetici paneli sayfaları `Views/Shared/_Layout.Admin.cshtml` layout'unu kullanmalıdır.
+    *   Yalnızca `Admin` rolündeki kullanıcıların erişebilmesi için Admin Controller'larında `[Authorize(Roles = "Admin")]` niteliği (attribute) bulunmalıdır.
+
+*   **Responsive ve UX:**
+    *   Oluşturulan tüm yeni HTML veya Razor bileşenleri tamamen mobil uyumlu (responsive) olmalıdır.
+    *   Görsel galerileri için `toy-gallery` veya mevcut sitenin galeri/slider JS kütüphaneleriyle uyumlu yapılar kurulmalıdır.
+
+*   **Sıfır Satır İçi (Inline) CSS ve JS Kuralı (Strict):**
+    *   HTML elemanları üzerinde asla inline stil (`style="..."`) kullanılmamalıdır. Gerekli tüm stiller harici CSS dosyalarında sınıf (class) olarak tanımlanmalıdır.
+    *   Sayfalarda doğrudan satır içi `<script>` veya CSS `<style>` etiketleri yazılmamalıdır.
+    *   Sayfaya özel CSS veya JS yazılması zorunluysa, bunlar mutlaka Layout'ta tanımlı olan `@section Styles { ... }` veya `@section Scripts { ... }` blokları içerisine alınarak sayfa dışına taşınmalıdır.
+    *   Etkinlik yöneticileri (event handlers) HTML içinde (örn: `onclick="..."`) tanımlanmamalıdır. Bunun yerine, JS tarafında `addEventListener` kullanılarak dinamik olarak bağlanmalıdır.
+
+---
+
+## 3. Kodlama ve C# Standartları
+
+*   **Modern C# Özellikleri:** .NET 10.0 ve C# 13 ile gelen modern özellikleri (Primary Constructors, pattern matching, collection expressions vb.) projenin tarzına uygun şekilde kullanın.
+*   **Asenkron Programlama (Async/Await):** Tüm veritabanı, dosya ve I/O işlemleri asenkron (`async`/`await`) olarak yazılmalıdır. `Task.Run` yerine doğrudan asenkron EF Core metotları (`ToListAsync`, `SaveChangesAsync` vb.) tercih edilmelidir.
+*   **Dependency Injection (DI):** Sınıflar arası bağımlılıklar her zaman constructor injection ile alınmalıdır. Sınıf içerisinde `new` anahtar kelimesiyle somut servis oluşturulmamalıdır.
+*   **Logging:** Projede **Serilog** entegrasyonu mevcuttur. Önemli adımlarda, catch bloklarında ve kritik işlemlerde `ILogger` kullanılarak yapılandırılmış loglama (structured logging) yapılmalıdır.
+*   **Hata Yönetimi (Error Handling):** Projede özel bir `ExceptionMiddleware` bulunmaktadır. Controller'lar içinde boğucu `try-catch` blokları yazmak yerine, genel hataların middleware tarafından yakalanmasına izin verin. Özel iş kuralları hataları için anlamlı exception tipleri fırlatın.
+
+---
+
+## 4. Veritabanı ve Entity Framework Core Kuralları
+
+*   Yeni bir tablo veya kolon eklendiğinde mutlaka `AppDbContext` güncellenmeli ve ardından `ezgi_mobilya.Data` katmanı hedef gösterilerek yeni bir Migration oluşturulmalıdır.
+*   Sorgularda performans için read-only (sadece okuma) amaçlı işlemlerde `.AsNoTracking()` metodu kullanılmalıdır.
+*   İlişkili veriler çekilirken N+1 problemine yol açmamak için `.Include()` ile Eager Loading yapılmalıdır.
+
+---
+
+## 5. İletişim Dili
+
+*   Kullanıcı ile iletişim kurarken her zaman **Türkçe** konuşun.
+*   Sorulan sorulara net, kod standartlarına ve projenin mevcut yapısına sadık cevaplar verin.

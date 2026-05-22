@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Infinite Loop - Bootstrap 4.0 HTML Template</title>
+    <title>Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri</title>
     <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick.css">
     <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick-theme.css">
     <link rel="stylesheet" href="~/themes/infinite-loop/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/themes/infinite-loop/css/tooplate-infinite-loop.css" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" />
+    <script>
+      (function() {
+        var savedTheme = localStorage.getItem('ezgi-craft-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
 <!--
 Tooplate 2117 Infinite Loop
 https://www.tooplate.com/view/2117-infinite-loop
@@ -18,70 +28,69 @@ https://www.tooplate.com/view/2117-infinite-loop
 
   </head>
   <body>    
-    <!-- Hero section -->
-    <section id="infinite" class="text-white tm-font-big tm-parallax">
-      <!-- Navigation -->
-      <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
-        <div class="container">   
-          <div class="tm-next">
-              <a href="#infinite" class="navbar-brand">Ezgi Mobilya</a>
-          </div>             
-            
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars navbar-toggler-icon"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#infinite">Ana Sayfa</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#whatwedo">Hakkımızda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#testimonials">Referanslar</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#gallery">Galeri</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#contact">İletişim</a>
-              </li>                    
-            </ul>
-          </div>        
-        </div>
-      </nav>
-      
-      <div class="text-center tm-hero-text-container">
-        <div class="tm-hero-text-container-inner">
-            <h2 class="tm-hero-title">Ezgi Mobilya</h2>
-            <p class="tm-hero-subtitle">
-              Ahşabın Kalbine Dokunan Zanaatkarlık
-              <br>1997'den Beri Size Özel.
-            </p>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
+      <div class="container">   
+        <div class="tm-next">
+            <a href="#infinite" class="navbar-brand">Ezgi Craft</a>
+        </div>             
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars navbar-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#infinite">Ana Sayfa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#whatwedo">Hakkımızda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tm-nav-link" href="#testimonials">Değerlerimiz</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#gallery">Koleksiyonumuz</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#contact">Sipariş & İletişim</a>
+            </li>                    
+            <li class="nav-item d-flex align-items-center justify-content-center">
+                <button id="themeToggle" class="theme-toggle-btn" title="Karanlık/Aydınlık Mod" aria-label="Karanlık/Aydınlık Mod">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+          </ul>
         </div>        
       </div>
+    </nav>
 
-      <div class="tm-next tm-intro-next">
-        <a href="#whatwedo" class="text-center tm-down-arrow-link">
-          <i class="fas fa-2x fa-arrow-down tm-down-arrow"></i>
-        </a>
+    <!-- Hero section -->
+    <section id="infinite" class="text-white tm-font-big tm-parallax">
+      <div class="container h-100 d-flex align-items-center">
+        <div class="row w-100 align-items-center" style="margin-top: 50px;">
+          <div class="col-lg-6 text-left tm-hero-left-content">
+            <span class="tm-hero-badge mb-3 d-inline-block">DOĞANIN DOKUSU, ELİN EMEĞİ</span>
+            <h1 class="tm-hero-title mb-4">Ezgi Craft</h1>
+            <p class="tm-hero-subtitle mb-4">
+              Doğal ahşabın sıcaklığını ve el emeğinin estetiğini yaşam alanlarınızla buluşturuyoruz. Sürdürülebilir ormanlardan seçilen özel parçalar, atölyemizde modern ve minimalist sanat eserlerine dönüşüyor.
+            </p>
+            <div class="mt-4">
+              <a href="#gallery" class="btn tm-btn-primary px-4 py-3 mr-3 font-weight-bold" style="border-radius: 4px !important;">Koleksiyonu Keşfet</a>
+              <a href="#contact" class="btn btn-outline-light px-4 py-3 font-weight-bold btn-hero-outline" style="border-radius: 4px !important; border-width: 2px;">İletişime Geç</a>
+            </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-block text-right">
+            <div class="tm-hero-image-frame">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='/themes/infinite-loop/img/toy-hero.jpg';" class="img-fluid" alt="Ezgi Craft Ahşap Sanatı" />
+            </div>
+          </div>
+        </div>
       </div>      
     </section>
 
     @RenderBody()
 
-    <div class="container-fluid tm-container-contact">
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="tm-text-white text-center mb-0">
-            Copyright &copy; 2020 All rights reserved. 
-            
-            - Design: <a rel="nofollow" href="https://www.tooplate.com" class="tm-footer-link">Tooplate</a>
-          </p>
-            </div>        
-          </div>
-      </div>
     
     <script src="~/themes/infinite-loop/js/jquery-1.9.1.min.js"></script>     
     <script src="~/themes/infinite-loop/slick/slick.min.js"></script>
@@ -154,14 +163,38 @@ https://www.tooplate.com/view/2117-infinite-loop
       };
       
       $(function(){
-        // Hero Section - Background Parallax
-        background_image_parallax($(".tm-parallax"), 0.30, false);
+        // Theme Toggle Logic
+        var themeToggleBtn = document.getElementById('themeToggle');
+        var themeIcon = themeToggleBtn.querySelector('i');
+        
+        function updateToggleIcon(theme) {
+          if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+          } else {
+            themeIcon.className = 'fas fa-moon';
+          }
+        }
+        
+        // Initial setup of the icon
+        var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        updateToggleIcon(currentTheme);
+        
+        themeToggleBtn.addEventListener('click', function() {
+          var current = document.documentElement.getAttribute('data-theme') || 'light';
+          var nextTheme = current === 'dark' ? 'light' : 'dark';
+          
+          document.documentElement.setAttribute('data-theme', nextTheme);
+          localStorage.setItem('ezgi-craft-theme', nextTheme);
+          updateToggleIcon(nextTheme);
+        });
+
+        $("#infinite").css({"background-position" : "center center"});
         background_image_parallax_2($("#contact"), 0.80);   
         background_image_parallax_2($("#testimonials"), 0.80);   
         
         // Handle window resize
         window.addEventListener('resize', function(){
-          background_image_parallax($(".tm-parallax"), 0.30, true);
+          $("#infinite").css({"background-position" : "center center"});
         }, true);
 
         // Detect window scroll and update navbar

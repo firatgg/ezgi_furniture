@@ -1,0 +1,80 @@
+@model IEnumerable<ezgi_mobilya.Service.DTOs.ContactMessageDto>
+@{
+    ViewData["Title"] = "Gelen Kutusu";
+    Layout = "~/Views/Shared/_Layout.Admin.cshtml";
+}
+
+<h2 class="mb-4" style="font-weight: 700;"><i class="fas fa-envelope mr-2" style="color: var(--color-primary);"></i> İletişim &amp; Sipariş Mesajları</h2>
+
+<div class="admin-card">
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table admin-table">
+                <thead>
+                    <tr>
+                        <th>Gönderen</th>
+                        <th>Konu / Mesaj</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th style="width: 150px; text-align: center;">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var msg in Model.OrderByDescending(x => x.CreatedDate))
+                    {
+                        <tr style="@(!msg.IsRead ? "background-color: rgba(var(--color-primary-rgb), 0.03);" : "")">
+                            <td>
+                                <strong style="color: var(--text-primary);">@msg.FullName</strong><br />
+                                <a href="mailto:@msg.Email" class="text-muted small"><i class="far fa-envelope mr-1"></i> @msg.Email</a>
+                            </td>
+                            <td>
+                                <span class="badge badge-secondary mb-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                    @(string.IsNullOrEmpty(msg.Subject) ? "Konu Belirtilmemiş" : msg.Subject)
+                                </span>
+                                <p class="mb-0 text-secondary" style="white-space: pre-wrap; font-size: 0.95rem;">@msg.Message</p>
+                            </td>
+                            <td class="small">@msg.CreatedDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                @if (msg.IsRead)
+                                {
+                                    <span class="badge badge-light text-muted border"><i class="fas fa-envelope-open mr-1"></i> Okundu</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-warning" style="background-color: #ffc107; color: #111;"><i class="fas fa-envelope mr-1"></i> Okunmadı</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    @if (!msg.IsRead)
+                                    {
+                                        <form asp-action="MarkMessageAsRead" method="post" class="mr-2">
+                                            <input type="hidden" name="id" value="@msg.Id" />
+                                            <button type="submit" class="btn btn-success btn-sm px-2" title="Okundu Olarak İşaretle" style="background-color: #28a745; border: none;">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    <form asp-action="DeleteMessage" method="post" onsubmit="return confirm('Bu mesajı silmek istediğinize emin misiniz?');">
+                                        <input type="hidden" name="id" value="@msg.Id" />
+                                        <button type="submit" class="btn btn-danger btn-sm px-2" title="Mesajı Sil" style="background-color: #dc3545; border: none;">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5 text-muted mb-0">
+            <i class="far fa-comments fa-3x mb-3 text-muted"></i>
+            <p>Gelen kutusu boş. Sitenizden mesaj alındıkça burada listelenecektir.</p>
+        </div>
+    }
+</div>

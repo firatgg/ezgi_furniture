@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Erişim Engellendi";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Erişim Engellendi - Ezgi Craft</title>
+    <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" />
+    <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" />
+    <style>
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .error-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 50px;
+            box-shadow: 0 10px 30px var(--shadow-hover);
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <i class="fas fa-exclamation-triangle mb-4 text-warning" style="font-size: 4rem; color: var(--color-primary) !important;"></i>
+        <h2 style="font-weight: 800;">Erişim Yetkiniz Yok</h2>
+        <p class="text-muted mt-3">Bu sayfayı görüntülemek için "Yönetici (Admin)" yetkisine sahip olmanız gerekmektedir.</p>
+        <div class="mt-4">
+            <a href="/Account/Login" class="btn btn-primary tm-btn-primary px-4 py-2 mr-2">Giriş Ekranına Git</a>
+            <a href="/" class="btn btn-outline-secondary px-4 py-2">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,289 +1,303 @@
-﻿@{
+@model IEnumerable<ezgi_mobilya.Service.DTOs.ProductDto>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@{
     ViewData["Title"] = "Ana Sayfa";
     Layout = "~/Views/Shared/_Layout.InfiniteLoop.cshtml";
+
+    var instagramUrl = Configuration["SiteContact:InstagramUrl"];
+    var instagramLabel = Configuration["SiteContact:InstagramLabel"];
+    var whatsappUrl = Configuration["SiteContact:WhatsAppUrl"];
+    var whatsappLabel = Configuration["SiteContact:WhatsAppLabel"];
+    var email = Configuration["SiteContact:Email"];
+    var addressLabel = Configuration["SiteContact:AddressLabel"];
+
+    var hasInstagram = !string.IsNullOrWhiteSpace(instagramUrl) && !string.IsNullOrWhiteSpace(instagramLabel);
+    var hasWhatsApp = !string.IsNullOrWhiteSpace(whatsappUrl) && !string.IsNullOrWhiteSpace(whatsappLabel);
+    var hasEmail = !string.IsNullOrWhiteSpace(email);
+    var hasAddress = !string.IsNullOrWhiteSpace(addressLabel);
+    var hasAnyContact = hasInstagram || hasWhatsApp || hasEmail || hasAddress;
 }
 
 <section id="whatwedo" class="tm-section-pad-top">
-      
-      <div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center mb-5">
+        <span class="tm-section-subtitle-badge">BİZ KİMİZ?</span>
+        <h2 class="tm-text-primary mb-4 tm-section-title font-weight-extrabold" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Hakkımızda</h2>
+        <p class="mb-5 tm-intro-text text-secondary" style="font-size: 1.15rem; line-height: 1.8; max-width: 850px; margin: 0 auto;">
+          Ezgi Craft olarak, doğallığı, estetiği ve el emeğini yaşam alanlarınıza taşıyoruz. Sadece birer mobilya veya oyuncak değil; evinizi güzelleştirecek özgün ahşap tasarımlar, sanatsal dekorasyon ürünleri ve el yapımı özel tasarım craft ürünleri üretiyoruz. Atölyemizde özenle seçilen dayanıklı ahşaplar, usta ellerde hayat bularak benzersiz tasarımlara dönüşmektedir.
+        </p>
+      </div>
+    </div>
 
-            <div class="row tm-content-box"><!-- first row -->
-                <div class="col-lg-12 col-xl-12">
-                    <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4 tm-section-title">Hakkımızda</h2>
-                        <p class="mb-4 tm-intro-text">
-                          1997 yılında <b>Murat Gültekin</b> tarafından <b>Ümraniye Altınşehir'de</b> kurulan Ezgi Mobilya, bir atölyeden çok daha fazlasıdır; burası ahşabın kalbine dokunan zanaatkarların evidir. Biz, fabrikasyonun tekdüzeliğine karşı el emeğinin sıcaklığını ve özgünlüğünü savunuyoruz. Her bir parçayı, sadece sizin için, ölçülerinize ve hayallerinize özel olarak tasarlıyor ve üretiyoruz. İşin ehli ustalarımız, yılların birikimini ve zanaatkar ruhunu her dokunuşlarına yansıtarak, size özel, zamana meydan okuyan mobilyalar yaratır.
-                        </p>
-                    </div>
-                </div>
-
-            </div><!-- first row -->
-            
-            <div class="row tm-content-box"><!-- second row -->
-        		<div class="col-lg-1">
-                    <i class="fas fa-3x fa-drafting-compass text-center tm-icon"></i>
-                </div>
-                <div class="col-lg-5">
-                    <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Kişiye Özel Tasarım</h2>
-                        <p class="mb-4 tm-intro-text">
-                          Standartların dışına çıkın. Mekanınıza ve zevkinize tam uyum sağlayan, ölçülerinize özel mobilya çözümleri sunuyoruz.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-1">
-                    <i class="fas fa-3x fa-gavel text-center tm-icon"></i>
-                </div>
-                <div class="col-lg-5">
-                    <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Zanaatkar Ustalık</h2>
-                        <p class="mb-4 tm-intro-text">
-                          Her bir ürünümüz, fabrikasyon değil, nesillerdir aktarılan bilgi ve tecrübeyle çalışan ustalarımızın el emeği göz nurudur.
-                      </p>
-                    </div>
-                </div>
-
-            </div><!-- second row -->
-            
-            <div class="row tm-content-box"><!-- third row -->
-        		<div class="col-lg-1">
-                    <i class="far fa-3x fa-handshake text-center tm-icon"></i>
-                </div>
-                <div class="col-lg-5">
-                    <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Esnaf Samimiyeti</h2>
-                        <p class="mb-4 tm-intro-text">
-                      Bizim için her müşteri değerlidir. Size sadece mobilya değil, aynı zamanda güven ve samimiyete dayalı bir alışveriş deneyimi sunarız.
-                      </p>
-                          
-                          <div class="tm-continue">
-                            <a href="#testimonials" class="tm-intro-text tm-btn-primary">Referanslarımız</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-1">
-                    <i class="fas fa-3x fa-star text-center tm-icon"></i>
-                </div>
-                <div class="col-lg-5">
-                    <div class="tm-intro-text-container">
-                      <h2 class="tm-text-primary mb-4">Seçkin Müşteriler</h2>
-                        <p class="mb-4 tm-intro-text">
-                      Kalitemizi ve özgünlüğümüzü tercih eden, aralarında Volkan Demirel ve Haldun Dormen gibi değerli isimlerin de bulunduğu seçkin bir müşteri portföyüne hizmet vermekten gurur duyarız.
-                      </p>
-                          
-                          <div class="tm-continue">
-                            <a href="#testimonials" class="tm-intro-text tm-btn-primary">Detaylar</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- third row -->
-
-        </div>
-      
-    </section>
-    
-    <section id="testimonials" class="tm-section-pad-top tm-parallax-2">      
-      <div class="container tm-testimonials-content">
-        <div class="row">
-          <div class="col-lg-12 tm-content-box">
-            <h2 class="text-white text-center mb-4 tm-section-title">Referanslarımız</h2>
-            <p class="mx-auto tm-section-desc text-center">
-                Bizimle çalışan değerli isimlerin düşünceleri, en büyük gurur kaynağımızdır.
-              </p>
-            <div class="mx-auto tm-gallery-container tm-gallery-container-2">
-              <div class="tm-testimonials-carousel">
-                <figure class="tm-testimonial-item">
-                  <img src="~/themes/infinite-loop/img/testimonial-img-01.jpg" alt="Image" class="img-fluid mx-auto">
-                  <blockquote>Ezgi Mobilya'nın zanaatkarlığı ve detaylara gösterdiği özen, evime tam istediğim sıcaklığı ve karakteri kattı.</blockquote>
-                  <figcaption>Volkan Demirel</figcaption>
-                </figure>
-
-                <figure class="tm-testimonial-item">
-                  <img src="~/themes/infinite-loop/img/testimonial-img-02.jpg" alt="Image" class="img-fluid mx-auto">
-                  <blockquote>Sanat ve zanaatın birleştiği nadir yerlerden. Yılların tecrübesi her dokunuşta kendini belli ediyor.</blockquote>
-                  <figcaption>Haldun Dormen</figcaption>
-                </figure>
-
-                <figure class="tm-testimonial-item">
-                  <img src="~/themes/infinite-loop/img/testimonial-img-03.jpg" alt="Image" class="img-fluid mx-auto">
-                  <blockquote>Modern ve estetik ürünler arıyorsanız doğru adres. Kesinlikle tavsiye ederim.</blockquote>
-                  <figcaption>Zeynep S. (Pazarlama)</figcaption>
-                </figure>
-
-                <figure class="tm-testimonial-item">
-                  <img src="~/themes/infinite-loop/img/testimonial-img-04.jpg" alt="Image" class="img-fluid mx-auto">
-                  <blockquote>Fiyat performans olarak piyasanın en iyilerinden. Kaliteden ödün vermiyorlar.</blockquote>
-                  <figcaption>Ali V. (Tasarımcı)</figcaption>
-                </figure>
-
-                <figure class="tm-testimonial-item">
-                  <img src="~/themes/infinite-loop/img/testimonial-img-02.jpg" alt="Image" class="img-fluid mx-auto">
-                  <blockquote>Satış sonrası destekleri harika. Her soruma anında çözüm buldular.</blockquote>
-                  <figcaption>Fatma A. (CTO)</figcaption>
-                </figure>
-              </div>
-            </div>
+    <div class="row tm-craft-features-grid mt-5">
+      <div class="col-md-6 mb-5">
+        <div class="tm-feature-item d-flex">
+          <div class="tm-feature-num">01</div>
+          <div class="tm-feature-body ml-4">
+            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Doğal &amp; Sağlıklı Ahşap</h3>
+            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
+              Ürünlerimizde kayın, ceviz, zeytin ve akçaağaç gibi dayanıklı, sürdürülebilir ormanlardan elde edilen doğal dokusu güçlü ağaçlar tercih edilir.
+            </p>
           </div>
         </div>
       </div>
-      <div class="tm-bg-overlay"></div>
-    </section>
-    
-    <section id="gallery" class="tm-section-pad-top">
-      <div class="container tm-container-gallery">
-        <div class="row">
-          <div class="text-center col-12">
-              <h2 class="tm-text-primary tm-section-title mb-4">Galeri</h2>
-              <p class="mx-auto tm-section-desc">
-                En yeni koleksiyonlarımızdan ve popüler ürünlerimizden bazılarını burada bulabilirsiniz.
-              </p>
-          </div>            
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="mx-auto tm-gallery-container">
-                    <div class="grid tm-gallery">
-                      <a href="~/themes/infinite-loop/img/gallery-img-01.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-01.jpg" alt="Image 1" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Modern <span>Oturma Grubu</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-02.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-02.jpg" alt="Image 2" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Minimalist <span>Yatak Odası</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-03.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-03.jpg" alt="Image 3" class="img-fluid">
-                          <figcaption>
-                            <h2><i><span>Ahşap</span> Yemek Masası</i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-04.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-04.jpg" alt="Image 4" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Konforlu <span>Köşe Takımı</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-05.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-05.jpg" alt="Image 5" class="img-fluid">
-                          <figcaption>
-                            <h2><i><span>Çalışma</span> Odası</i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-06.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-06.jpg" alt="Image 6" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Şık <span>TV Ünitesi</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-01.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-01.jpg" alt="Image 7" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Yeni <span>Koleksiyon</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                      <a href="~/themes/infinite-loop/img/gallery-img-02.jpg">
-                        <figure class="effect-honey tm-gallery-item">
-                          <img src="~/themes/infinite-loop/img/gallery-tn-02.jpg" alt="Image 8" class="img-fluid">
-                          <figcaption>
-                            <h2><i>Rahatlık ve <span>Estetik</span></i></h2>
-                          </figcaption>
-                        </figure>
-                      </a>
-                    </div>
-                </div>                
-            </div>        
+
+      <div class="col-md-6 mb-5">
+        <div class="tm-feature-item d-flex">
+          <div class="tm-feature-num">02</div>
+          <div class="tm-feature-body ml-4">
+            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Pürüzsüz &amp; Koruyucu Yüzeyler</h3>
+            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
+              Tasarımlarımızın tamamı kıymık ve pürüzlerden arındırılmış, çocuk ve insan sağlığına zararsız doğal yağlarla korunmuş yüzeylere sahiptir.
+            </p>
           </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="tm-section-pad-top tm-parallax-2">
-    
-      <div class="container tm-container-contact">
-        
-        <div class="row">
-            
-            <div class="text-center col-12">
-                <h2 class="tm-section-title mb-4">Bize Ulaşın</h2>
-                <p class="mb-5">
-                  Herhangi bir sorunuz, öneriniz veya projeniz için bizimle iletişime geçmekten çekinmeyin. Size yardımcı olmaktan mutluluk duyarız.
-                </p><br>
-            </div>
-            
-            <div class="col-sm-12 col-md-6">
-              <form action="" method="get">
-                <input id="name" name="name" type="text" placeholder="Adınız" class="tm-input" required />
-                <input id="email" name="email" type="email" placeholder="E-posta Adresiniz" class="tm-input" required />
-                <textarea id="message" name="message" rows="8" placeholder="Mesajınız" class="tm-input" required></textarea>
-                <button type="submit" class="btn tm-btn-submit">Gönder</button>
-              </form>
-            </div>
-            
-            <div class="col-sm-12 col-md-6">
-
-                <div class="contact-item">
-                  <a rel="nofollow" href="#" class="item-link">
-                      <i class="far fa-2x fa-comment mr-4"></i>
-                      <span class="mb-0">Online Sohbet</span>
-                  </a>              
-                </div>
-                
-                <div class="contact-item">
-                  <a rel="nofollow" href="mailto:info@ezgimobilya.com" class="item-link">
-                      <i class="far fa-2x fa-envelope mr-4"></i>
-                      <span class="mb-0">info@ezgimobilya.com</span>
-                  </a>              
-                </div>
-                
-                <div class="contact-item">
-                  <a rel="nofollow" href="https://www.google.com/maps" class="item-link">
-                      <i class="fas fa-2x fa-map-marker-alt mr-4"></i>
-                      <span class="mb-0">Adresimiz</span>
-                  </a>              
-                </div>
-                
-                <div class="contact-item">
-                  <a rel="nofollow" href="tel:05555555555" class="item-link">
-                      <i class="fas fa-2x fa-phone-square mr-4"></i>
-                      <span class="mb-0">0555 555 55 55</span>
-                  </a>              
-                </div>
-                
-                <div class="contact-item">&nbsp;</div>
-            
-</div>
-            
-            
-        </div><!-- row ending -->
-        
+        </div>
       </div>
 
-      	<footer class="text-center small tm-footer">
-          <p class="mb-0">
-          Copyright &copy; 2025 Ezgi Mobilya 
+      <div class="col-md-6 mb-5 mb-md-0">
+        <div class="tm-feature-item d-flex">
+          <div class="tm-feature-num">03</div>
+          <div class="tm-feature-body ml-4">
+            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Kusursuz Butik İşçilik</h3>
+            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
+              Ahşap parçalar hassas atölye kesiminden sonra el zımparası ile tek tek zımparalanır, pürüzsüzleştirilir ve montaja hazır hale getirilir.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="tm-feature-item d-flex">
+          <div class="tm-feature-num">04</div>
+          <div class="tm-feature-body ml-4">
+            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Özgün &amp; Minimalist Estetik</h3>
+            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
+              Yaşam alanlarınıza dinginlik, huzur ve şıklık getiren, gereksiz tüm fazlalıklardan arındırılmış, fonksiyonel tasarımlar geliştiriyoruz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="tm-section-pad-top tm-parallax-2">
+  <div class="container tm-testimonials-content">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center mb-5">
+        <span class="tm-section-subtitle-badge" style="color: rgba(255,255,255,0.7) !important;">STANDARTLARIMIZ</span>
+        <h2 class="text-white text-center mb-4 tm-section-title" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Değerlerimiz &amp; Standartlarımız</h2>
+        <p class="mx-auto tm-section-desc text-center" style="color: rgba(255, 255, 255, 0.8); font-size: 1.15rem; line-height: 1.8;">
+          Üretimde odak noktamız; yaşam alanlarınızla güvenle buluşturabileceğiniz doğal malzemeler, kusursuz el işçiliği ve zamansız tasarımlardır.
+        </p>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <article class="tm-trust-card h-100">
+          <div class="tm-trust-icon-box">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3 class="h4 text-white font-weight-bold mb-3">Doğal Malzemeler</h3>
+          <p class="mb-0">Ahşabın sıcaklığını ve eşsiz dokusunu koruyan, tamamen organik ve uzun ömürlü tasarımlar.</p>
+        </article>
+      </div>
+      
+      <div class="col-md-4 mb-4 mb-md-0">
+        <article class="tm-trust-card h-100">
+          <div class="tm-trust-icon-box">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="h4 text-white font-weight-bold mb-3">Sağlıklı Dokunuşlar</h3>
+          <p class="mb-0">Yuvarlatılmış yumuşak kenarlar, pürüzsüz yüzeyler ve kimyasal içermeyen doğal koruyucular.</p>
+        </article>
+      </div>
+
+      <div class="col-md-4">
+        <article class="tm-trust-card h-100">
+          <div class="tm-trust-icon-box">
+            <i class="fas fa-ruler-combined"></i>
+          </div>
+          <h3 class="h4 text-white font-weight-bold mb-3">Butik Üretim Disiplini</h3>
+          <p class="mb-0">Tasarım, hassas kesim, el zımparası ve koruyucu yağlama adımları atölye özeniyle yapılır.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="tm-bg-overlay"></div>
+</section>
+
+<section id="gallery" class="tm-section-pad-top">
+  <div class="container">
+    <div class="row">
+      <div class="text-center col-lg-10 offset-lg-1 mb-5">
+        <span class="tm-section-subtitle-badge">ÖZGÜN TASARIMLAR</span>
+        <h2 class="tm-text-primary tm-section-title mb-4" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Koleksiyonumuz</h2>
+        <p class="mx-auto tm-section-desc text-muted" style="max-width: 700px; font-size: 1.1rem; line-height: 1.7;">
+          Doğadan ilham alan, her biri el emeğiyle özenle hazırlanan özgün ahşap craft ve dekorasyon ürünlerimizden seçkiler.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="mx-auto tm-gallery-container">
+          <div class="grid tm-gallery">
+            @if (Model != null && Model.Any())
+            {
+              @foreach (var product in Model)
+              {
+                <div class="tm-gallery-card-wrapper px-2">
+                  @{
+                      var imageUrl = product.ImageUrl ?? "";
+                      var isExternalImage = imageUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || imageUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
+                      var finalImageUrl = isExternalImage ? imageUrl : Url.Content("~/" + imageUrl);
+                      
+                      var thumbnailUrl = product.ThumbnailUrl ?? "";
+                      var isExternalThumb = thumbnailUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || thumbnailUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
+                      var finalThumbnailUrl = isExternalThumb ? thumbnailUrl : Url.Content("~/" + thumbnailUrl);
+                  }
+                  <a href="@finalImageUrl" class="tm-gallery-card-link">
+                    <div class="tm-gallery-card">
+                      <div class="tm-gallery-img-container">
+                        <img src="@finalThumbnailUrl" onerror="this.onerror=null; this.src='/themes/infinite-loop/img/toy-gallery-thumb-0@(product.Id > 0 && product.Id <= 6 ? product.Id : 1).jpg';" alt="@product.Description" class="img-fluid tm-gallery-img">
+                      </div>
+                      <div class="tm-gallery-card-info mt-3 text-left">
+                        <span class="tm-gallery-card-category text-uppercase small font-weight-bold">@product.CategoryName</span>
+                        <h4 class="tm-gallery-card-title my-1 font-weight-bold">@product.Name</h4>
+                        <div class="tm-gallery-card-price mt-2 font-weight-bold">@product.Price.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              }
+            }
+            else
+            {
+              <p class="text-center text-muted w-100 py-5">Koleksiyonumuz yakında güncellenecektir.</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="tm-section-pad-top tm-parallax-2">
+  <div class="container tm-container-contact">
+    <div class="row">
+      <div class="text-center col-12">
+        <h2 class="tm-section-title mb-4">Sipariş &amp; İletişim</h2>
+        <p class="mb-5 text-white">
+          Sipariş ve ürün bilgisi için aşağıdaki iletişim kanallarından bize ulaşabilir ya da doğrudan mesaj gönderebilirsiniz.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Contact Info Section -->
+      <div class="col-sm-12 col-md-5 d-flex flex-column justify-content-start mb-5 mb-md-0 text-white">
+        <h3 class="mb-4 text-white h4">İletişim Bilgilerimiz</h3>
+        
+        @if (hasInstagram)
+        {
+          <div class="contact-item mb-4">
+            <a rel="nofollow noopener noreferrer" href="@instagramUrl" target="_blank" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+              <i class="fab fa-2x fa-instagram mr-3 align-middle" style="color: #ff5e97;"></i>
+              <span class="align-middle">@instagramLabel</span>
+            </a>
+          </div>
+        }
+
+        @if (hasWhatsApp)
+        {
+          <div class="contact-item mb-4">
+            <a rel="nofollow noopener noreferrer" href="@whatsappUrl" target="_blank" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+              <i class="fab fa-2x fa-whatsapp mr-3 align-middle" style="color: #25d366;"></i>
+              <span class="align-middle">@whatsappLabel</span>
+            </a>
+          </div>
+        }
+
+        @if (hasEmail)
+        {
+          <div class="contact-item mb-4">
+            <a rel="nofollow" href="mailto:@email" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
+              <i class="far fa-2x fa-envelope mr-3 align-middle" style="color: #00a0e9;"></i>
+              <span class="align-middle">@email</span>
+            </a>
+          </div>
+        }
+
+        @if (hasAddress)
+        {
+          <div class="contact-item mb-4">
+            <div class="item-link d-flex align-items-center" style="color: #fff; font-size: 1.1rem;">
+              <i class="fas fa-2x fa-map-marker-alt mr-3" style="color: #ff3e3e;"></i>
+              <span>@addressLabel</span>
+            </div>
+          </div>
+        }
+
+        @if (!hasAnyContact)
+        {
+          <p class="text-white-50">Doğrulanmış iletişim kanalları yakında eklenecektir.</p>
+        }
+        
+        <div class="mt-4 text-center text-md-left">
+          <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=150&h=150&q=80" class="img-fluid rounded-circle tm-contact-visual shadow" style="max-width: 130px; height: 130px; object-fit: cover; border: 3px solid rgba(255,255,255,0.4);" alt="Ezgi Craft Atölyesi" />
+        </div>
+      </div>
+
+      <!-- Interactive Form Section -->
+      <div class="col-sm-12 col-md-7">
+        <div class="bg-white p-4 rounded shadow tm-contact-form-container" style="border-radius: 8px;">
+          <h3 class="tm-text-primary mb-4 text-center h4 font-weight-bold" style="font-weight: 700;">Hızlı İletişim Formu</h3>
           
-          . <a rel="nofollow" href="https://www.tooplate.com" title="HTML templates">Designed by TOOPLATE</a></p>
-        </footer>
+          @if (TempData["SuccessMessage"] != null)
+          {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="fas fa-check-circle mr-2"></i> @TempData["SuccessMessage"]
+            </div>
+          }
+          
+          @if (TempData["ErrorMessage"] != null)
+          {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="fas fa-exclamation-circle mr-2"></i> @TempData["ErrorMessage"]
+            </div>
+          }
 
-    </section>
+          <form asp-action="SubmitContactMessage" asp-controller="Home" method="post" class="text-left tm-minimal-form">
+            @Html.AntiForgeryToken()
+            <div class="form-group mb-4">
+              <input type="text" class="form-control tm-minimal-input" id="FullName" name="FullName" required max-length="100" placeholder="Adınız Soyadınız *">
+            </div>
+            
+            <div class="form-group mb-4">
+              <input type="email" class="form-control tm-minimal-input" id="Email" name="Email" required max-length="100" placeholder="E-posta Adresiniz *">
+            </div>
+            
+            <div class="form-group mb-4">
+              <input type="text" class="form-control tm-minimal-input" id="Subject" name="Subject" max-length="150" placeholder="Konu Başlığı">
+            </div>
+            
+            <div class="form-group mb-4">
+              <textarea class="form-control tm-minimal-input" id="Message" name="Message" rows="4" required max-length="2000" placeholder="Mesajınız... *"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block tm-btn-primary py-3 font-weight-bold text-uppercase w-100" style="letter-spacing: 1px;">MESAJI GÖNDER</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center small tm-footer mt-5">
+    <p class="mb-0 text-white">
+      Copyright &copy; @DateTime.Now.Year Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri
+    </p>
+  </footer>
+</section>

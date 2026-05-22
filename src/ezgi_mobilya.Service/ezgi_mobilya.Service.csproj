@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\ezgi_mobilya.Core\ezgi_mobilya.Core.csproj" />
-    <ProjectReference Include="..\ezgi_mobilya.Data\ezgi_mobilya.Data.csproj" />
+    <PackageReference Include="AutoMapper" Version="16.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="16.1.1" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <ProjectReference Include="..\ezgi_mobilya.Core\ezgi_mobilya.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

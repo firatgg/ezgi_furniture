@@ -1,0 +1,153 @@
+@model IEnumerable<ezgi_mobilya.Service.DTOs.SocialPostDto>
+@{
+    ViewData["Title"] = "Sosyal Medya Paylaşımı";
+    Layout = "~/Views/Shared/_Layout.Admin.cshtml";
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2 style="font-weight: 700;">
+            <i class="fab fa-instagram mr-2" style="color: var(--color-primary);"></i> Sosyal Medya Entegrasyonu &amp; Otomatik Post
+        </h2>
+        <p class="text-muted">Buradan yapacağınız paylaşımlar, Meta entegrasyonu sayesinde **Instagram** ve **Facebook** sayfalarınızda otomatik olarak eş zamanlı yayınlanır.</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Form to Create and Post -->
+    <div class="col-lg-6">
+        <div class="admin-card">
+            <h3 class="h5 mb-4" style="font-weight: 700; color: var(--color-primary);">Yeni Gönderi Paylaş</h3>
+            
+            <form asp-action="PublishSocialPost" method="post">
+                @Html.AntiForgeryToken()
+                
+                <!-- Platform Selection -->
+                <div class="form-group mb-4">
+                    <label class="font-weight-bold mb-2">Hedef Platformlar <span class="text-danger">*</span></label>
+                    <div class="d-flex">
+                        <div class="custom-control custom-checkbox mr-4">
+                            <input type="checkbox" class="custom-control-input" id="platformInsta" name="selectedPlatforms" value="Instagram" checked>
+                            <label class="custom-control-label font-weight-bold" for="platformInsta" style="color: #e1306c;">
+                                <i class="fab fa-instagram mr-1"></i> Instagram Business
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="platformFb" name="selectedPlatforms" value="Facebook" checked>
+                            <label class="custom-control-label font-weight-bold" for="platformFb" style="color: #1877f2;">
+                                <i class="fab fa-facebook-square mr-1"></i> Facebook Sayfası
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image URL -->
+                <div class="form-group mb-3">
+                    <label for="ImageUrl" class="font-weight-bold">Paylaşılacak Görsel Adresi (URL) <span class="text-danger">* (Insta için zorunlu)</span></label>
+                    <input type="url" class="form-control" id="ImageUrl" name="ImageUrl" required placeholder="https://ezgicraft.com/images/urun-1.jpg" style="padding: 10px 15px;">
+                    <small class="form-text text-muted">Instagram API kuralları gereği, görselin internete açık, erişilebilir bir tam URL olması zorunludur.</small>
+                </div>
+
+                <!-- Caption / Content -->
+                <div class="form-group mb-4">
+                    <label for="Caption" class="font-weight-bold">Gönderi Açıklaması / Altyazı <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="Caption" name="Caption" rows="6" required placeholder="Yeni el emeği tasarımımız yayında! #ezgicraft #woodart #handmade" style="padding: 10px 15px; resize: none;"></textarea>
+                    <small class="form-text text-muted">Hashtag (#) ve emoji destekler.</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary tm-btn-primary btn-block py-2 font-weight-bold text-uppercase w-100" style="letter-spacing: 1px;">
+                    <i class="fas fa-paper-plane mr-2"></i> ŞİMDİ PAYLAŞ (AUTO-POST)
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right Side: API Key Help & History -->
+    <div class="col-lg-6">
+        <!-- API Setup Info Card -->
+        <div class="admin-card" style="border-left: 4px solid var(--color-primary);">
+            <h4 class="h5 font-weight-bold mb-3"><i class="fas fa-key mr-2"></i> Meta API Bağlantı Durumu</h4>
+            <p class="small text-secondary">
+                Şu anda uygulama, gerçek API anahtarları tanımlanana kadar **simülasyon modunda** çalışmaktadır. 
+                Paylaşımlarınız başarıyla veritabanına kaydedilir ve simüle edilir.
+            </p>
+            <hr class="my-3" style="border-top: 1px solid var(--color-border);" />
+            <h5 class="small font-weight-bold text-uppercase mb-2">Nasıl Gerçek Hesap Bağlanır?</h5>
+            <ol class="small text-secondary pl-3">
+                <li class="mb-1">**developers.facebook.com** adresine gidin.</li>
+                <li class="mb-1">Bir Meta Uygulaması oluşturup Instagram Graph API yetkisi alın.</li>
+                <li class="mb-1">Elde ettiğiniz erişim anahtarını sunucudaki `.env` dosyasında doldurun:</li>
+            </ol>
+            <pre class="bg-light p-2 rounded small border text-dark" style="font-size: 0.8rem; background-color: var(--bg-primary) !important; color: var(--text-primary) !important; border-color: var(--color-border) !important;">
+SOCIALMEDIA_INSTAGRAM_ACCESSTOKEN=Access_Token_Buraya
+SOCIALMEDIA_INSTAGRAM_BUSINESSACCOUNTID=Business_ID_Buraya
+SOCIALMEDIA_FACEBOOK_PAGEID=Sayfa_ID_Buraya
+SOCIALMEDIA_FACEBOOK_ACCESSTOKEN=Access_Token_Buraya</pre>
+        </div>
+
+        <!-- Share Log / History -->
+        <div class="admin-card">
+            <h3 class="h5 mb-4" style="font-weight: 700; color: var(--color-primary);"><i class="fas fa-history mr-2"></i> Paylaşım Günlüğü</h3>
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                    <table class="table admin-table table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Durum</th>
+                                <th>Tarih</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var post in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @foreach (var p in post.Platforms.Split(','))
+                                        {
+                                            @if (p.Trim() == "Instagram")
+                                            {
+                                                <span class="badge badge-danger mr-1" style="background-color: #e1306c; font-size: 0.75rem;"><i class="fab fa-instagram mr-1"></i> Instagram</span>
+                                            }
+                                            else if (p.Trim() == "Facebook")
+                                            {
+                                                <span class="badge badge-primary" style="background-color: #1877f2; font-size: 0.75rem;"><i class="fab fa-facebook-f mr-1"></i> Facebook</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (post.IsPosted)
+                                        {
+                                            <span class="badge badge-success" style="background-color: #28a745; font-size: 0.75rem;" title="SocialPostID: @post.SocialPostId"><i class="fas fa-check mr-1"></i> Başarılı</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger" style="background-color: #dc3545; font-size: 0.75rem;" title="@post.ErrorMessage"><i class="fas fa-times mr-1"></i> Hata</span>
+                                        }
+                                    </td>
+                                    <td class="small text-muted" style="font-size: 0.8rem;">@post.CreatedDate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="border-top-0 pt-0 pb-3">
+                                        <div class="p-2 rounded bg-light small" style="background-color: var(--bg-primary) !important; color: var(--text-secondary); max-width: 100%; white-space: normal; word-wrap: break-word;">
+                                            @if (!string.IsNullOrEmpty(post.ImageUrl))
+                                            {
+                                                <i class="fas fa-image mr-1 text-muted" title="@post.ImageUrl"></i>
+                                            }
+                                            @post.Caption
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-muted text-center py-4 mb-0 small">Henüz bir paylaşım yapılmadı.</p>
+            }
+        </div>
+    </div>
+</div>
