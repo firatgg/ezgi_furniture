@@ -29,6 +29,13 @@ services:
       - SiteContact__PhoneUrl=${SITE_CONTACT_PHONE_URL:-}
       - SiteContact__PhoneLabel=${SITE_CONTACT_PHONE_LABEL:-}
       - SiteContact__AddressLabel=${SITE_CONTACT_ADDRESS_LABEL:-}
+      - Smtp__Host=${SMTP_HOST:-}
+      - Smtp__Port=${SMTP_PORT:-587}
+      - Smtp__EnableSsl=${SMTP_ENABLE_SSL:-true}
+      - Smtp__User=${SMTP_USER:-}
+      - Smtp__Password=${SMTP_PASSWORD:-}
+      - Smtp__From=${SMTP_FROM:-}
+      - Smtp__FromName=${SMTP_FROM_NAME:-Ezgi Craft}
       - SocialMedia__Instagram__AccessToken=${SOCIALMEDIA_INSTAGRAM_ACCESSTOKEN:-}
       - SocialMedia__Instagram__BusinessAccountId=${SOCIALMEDIA_INSTAGRAM_BUSINESSACCOUNTID:-}
       - SocialMedia__Facebook__PageId=${SOCIALMEDIA_FACEBOOK_PAGEID:-}

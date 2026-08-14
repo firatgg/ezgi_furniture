@@ -37,7 +37,7 @@ namespace ezgi_mobilya.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SubmitContactMessage(ContactMessageDto contactMessageDto)
+        public async Task<IActionResult> SubmitContactMessage([Bind("FullName,Email,Subject,Message")] ContactMessageDto contactMessageDto)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +45,7 @@ namespace ezgi_mobilya.Controllers
                 {
                     await _contactMessageService.AddAsync(contactMessageDto);
                     TempData["SuccessMessage"] = _localizer["Contact_Success"].Value;
-                    return RedirectToAction(nameof(Index), "Home", "#contact");
+                    return RedirectToContact();
                 }
                 catch (Exception ex)
                 {
@@ -55,11 +55,17 @@ namespace ezgi_mobilya.Controllers
             }
             else
             {
+                _logger.LogWarning(
+                    "İletişim formu doğrulanamadı. Hatalar: {Errors}",
+                    string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
                 TempData["ErrorMessage"] = _localizer["Contact_Invalid"].Value;
             }
 
-            return RedirectToAction(nameof(Index), "Home", "#contact");
+            return RedirectToContact();
         }
+
+        private RedirectToActionResult RedirectToContact()
+            => RedirectToAction(nameof(Index), "Home", fragment: "contact");
 
         public IActionResult Privacy()
         {

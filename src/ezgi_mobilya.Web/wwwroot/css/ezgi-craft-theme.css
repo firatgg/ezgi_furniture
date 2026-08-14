@@ -794,6 +794,7 @@ span.lang-switcher-link {
 #testimonials .tm-bg-overlay {
   background: rgba(25, 22, 20, 0.75) !important;
   z-index: 1;
+  pointer-events: none;
 }
 
 .tm-contact-form-container {

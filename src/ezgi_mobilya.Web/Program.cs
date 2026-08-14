@@ -7,6 +7,7 @@ using ezgi_mobilya.Data.UnitOfWorks;
 using ezgi_mobilya.Service;
 using ezgi_mobilya.Web.Localization;
 using ezgi_mobilya.Web.Middlewares;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -72,6 +73,14 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+// Reverse proxy / Cloudflare arkasında doğru şema ve istemci IP'si için
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // Service Layer Registration (AutoMapper, FluentValidation)
 builder.Services.AddServiceLayer();
 
@@ -124,6 +133,8 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
+app.UseForwardedHeaders();
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

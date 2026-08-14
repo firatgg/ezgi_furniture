@@ -14,7 +14,12 @@ namespace ezgi_mobilya.Service.Mapping
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : null))
                 .ReverseMap();
                 
-            CreateMap<ContactMessage, ContactMessageDto>().ReverseMap();
+            CreateMap<ContactMessage, ContactMessageDto>();
+            CreateMap<ContactMessageDto, ContactMessage>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.IsRead, opt => opt.Ignore());
             CreateMap<SocialPost, SocialPostDto>().ReverseMap();
         }
     }

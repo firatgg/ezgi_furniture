@@ -32,8 +32,20 @@ namespace ezgi_mobilya.Web.Middlewares
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            var acceptHeader = context.Request.Headers.Accept.ToString();
+            var wantsHtml = acceptHeader.Contains("text/html", StringComparison.OrdinalIgnoreCase);
+
+            if (wantsHtml && !context.Response.HasStarted)
+            {
+                var redirectPath = context.Request.Path.StartsWithSegments("/Home/SubmitContactMessage")
+                    ? "/#contact"
+                    : "/Home/Error";
+                context.Response.Redirect(redirectPath);
+                return;
+            }
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
@@ -48,7 +60,7 @@ namespace ezgi_mobilya.Web.Middlewares
                 response["Detailed"] = exception.Message;
             }
 
-            return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+            await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ezgi_mobilya.Service
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IContactMessageService, ContactMessageService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ISocialMediaService, SocialMediaService>();
         }
     }
