@@ -42,12 +42,9 @@ services:
       - SocialMedia__Facebook__AccessToken=${SOCIALMEDIA_FACEBOOK_ACCESSTOKEN:-}
     ports:
       - "5080:8080"
-    volumes:
-      - dataprotection-keys:/home/app/.aspnet/DataProtection-Keys
     depends_on:
       - ezgi_mobilya.db
     restart: always
 
 volumes:
   postgres-data:
-  dataprotection-keys:
