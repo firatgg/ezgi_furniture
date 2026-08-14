@@ -1,7 +1,9 @@
 using ezgi_mobilya.Models;
 using ezgi_mobilya.Service.DTOs;
 using ezgi_mobilya.Service.Services;
+using ezgi_mobilya.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -12,15 +14,18 @@ namespace ezgi_mobilya.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly IContactMessageService _contactMessageService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
         public HomeController(
             ILogger<HomeController> logger,
             IProductService productService,
-            IContactMessageService contactMessageService)
+            IContactMessageService contactMessageService,
+            IStringLocalizer<SharedResource> localizer)
         {
             _logger = logger;
             _productService = productService;
             _contactMessageService = contactMessageService;
+            _localizer = localizer;
         }
 
         public async Task<IActionResult> Index()
@@ -39,18 +44,18 @@ namespace ezgi_mobilya.Controllers
                 try
                 {
                     await _contactMessageService.AddAsync(contactMessageDto);
-                    TempData["SuccessMessage"] = "Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.";
+                    TempData["SuccessMessage"] = _localizer["Contact_Success"].Value;
                     return RedirectToAction(nameof(Index), "Home", "#contact");
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "İletişim formu kaydedilirken hata oluştu.");
-                    TempData["ErrorMessage"] = "Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.";
+                    TempData["ErrorMessage"] = _localizer["Contact_Error"].Value;
                 }
             }
             else
             {
-                TempData["ErrorMessage"] = "Lütfen form alanlarını doğru doldurduğunuzdan emin olun.";
+                TempData["ErrorMessage"] = _localizer["Contact_Invalid"].Value;
             }
 
             return RedirectToAction(nameof(Index), "Home", "#contact");

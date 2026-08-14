@@ -2,7 +2,7 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
-    ViewData["Title"] = "Ana Sayfa";
+    ViewData["Title"] = Localizer["Nav_Home"];
     Layout = "~/Views/Shared/_Layout.InfiniteLoop.cshtml";
 
     var instagramUrl = Configuration["SiteContact:InstagramUrl"];
@@ -10,35 +10,76 @@
     var whatsappUrl = Configuration["SiteContact:WhatsAppUrl"];
     var whatsappLabel = Configuration["SiteContact:WhatsAppLabel"];
     var email = Configuration["SiteContact:Email"];
+    var phoneUrl = Configuration["SiteContact:PhoneUrl"];
+    var phoneLabel = Configuration["SiteContact:PhoneLabel"];
     var addressLabel = Configuration["SiteContact:AddressLabel"];
 
     var hasInstagram = !string.IsNullOrWhiteSpace(instagramUrl) && !string.IsNullOrWhiteSpace(instagramLabel);
     var hasWhatsApp = !string.IsNullOrWhiteSpace(whatsappUrl) && !string.IsNullOrWhiteSpace(whatsappLabel);
     var hasEmail = !string.IsNullOrWhiteSpace(email);
+    var hasPhone = !string.IsNullOrWhiteSpace(phoneUrl) && !string.IsNullOrWhiteSpace(phoneLabel);
     var hasAddress = !string.IsNullOrWhiteSpace(addressLabel);
-    var hasAnyContact = hasInstagram || hasWhatsApp || hasEmail || hasAddress;
+    var hasAnyContact = hasInstagram || hasWhatsApp || hasEmail || hasPhone || hasAddress;
+
+    string ToWebpPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return path;
+        if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            return path[..^4] + ".webp";
+        if (path.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || path.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase))
+            return System.IO.Path.ChangeExtension(path, ".webp") ?? path;
+        return path;
+    }
+
+    string ToThumbWebpPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return path;
+        var webp = ToWebpPath(path);
+        var slash = webp.LastIndexOf('/');
+        var file = slash >= 0 ? webp[(slash + 1)..] : webp;
+        var dir = slash >= 0 ? webp[..(slash + 1)] : "";
+        if (file.EndsWith(".webp", StringComparison.OrdinalIgnoreCase) && !file.Contains("-thumb.", StringComparison.OrdinalIgnoreCase))
+            file = file[..^5] + "-thumb.webp";
+        return dir + file;
+    }
 }
 
-<section id="whatwedo" class="tm-section-pad-top">
+<!-- Hakkımızda Section (Grovemade Story Style) -->
+<section id="whatwedo" class="tm-section-pad-top tm-story-section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1 text-center mb-5">
-        <span class="tm-section-subtitle-badge">BİZ KİMİZ?</span>
-        <h2 class="tm-text-primary mb-4 tm-section-title font-weight-extrabold" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Hakkımızda</h2>
-        <p class="mb-5 tm-intro-text text-secondary" style="font-size: 1.15rem; line-height: 1.8; max-width: 850px; margin: 0 auto;">
-          Ezgi Craft olarak, doğallığı, estetiği ve el emeğini yaşam alanlarınıza taşıyoruz. Sadece birer mobilya veya oyuncak değil; evinizi güzelleştirecek özgün ahşap tasarımlar, sanatsal dekorasyon ürünleri ve el yapımı özel tasarım craft ürünleri üretiyoruz. Atölyemizde özenle seçilen dayanıklı ahşaplar, usta ellerde hayat bularak benzersiz tasarımlara dönüşmektedir.
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="tm-story-image-container">
+          <picture>
+            <source srcset="@Url.Content("~/images/products/mutfak-tezgahi-thumb.webp")" type="image/webp" />
+            <img src="~/images/products/mutfak-tezgahi.png" alt="@Localizer["About_ImageAlt"]" class="img-fluid tm-story-img" width="640" height="360" loading="lazy" decoding="async" asp-append-version="true" />
+          </picture>
+          <div class="tm-story-badge-overlay">
+            <span class="tm-story-badge-text">@Localizer["About_Handmade"]</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 pl-lg-5">
+        <span class="tm-section-subtitle-badge">@Localizer["About_Header"]</span>
+        <h2 class="tm-section-title tm-serif-title mb-4">@Localizer["About_Title"]</h2>
+        <p class="tm-intro-text text-secondary mb-4">
+          @Localizer["About_P1"]
         </p>
+        <p class="tm-intro-text text-secondary mb-4">
+          @Localizer["About_P2"]
+        </p>
+        <a href="#gallery" class="btn tm-btn-primary">@Localizer["About_Button"]</a>
       </div>
     </div>
 
-    <div class="row tm-craft-features-grid mt-5">
+    <div class="row tm-craft-features-grid mt-5 pt-5 border-top border-light">
       <div class="col-md-6 mb-5">
         <div class="tm-feature-item d-flex">
           <div class="tm-feature-num">01</div>
           <div class="tm-feature-body ml-4">
-            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Doğal &amp; Sağlıklı Ahşap</h3>
-            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
-              Ürünlerimizde kayın, ceviz, zeytin ve akçaağaç gibi dayanıklı, sürdürülebilir ormanlardan elde edilen doğal dokusu güçlü ağaçlar tercih edilir.
+            <h3 class="h5 mb-2 font-weight-bold tm-feature-title">@Localizer["Feature1_Title"]</h3>
+            <p class="text-muted tm-feature-desc">
+              @Localizer["Feature1_Desc"]
             </p>
           </div>
         </div>
@@ -48,9 +89,9 @@
         <div class="tm-feature-item d-flex">
           <div class="tm-feature-num">02</div>
           <div class="tm-feature-body ml-4">
-            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Pürüzsüz &amp; Koruyucu Yüzeyler</h3>
-            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
-              Tasarımlarımızın tamamı kıymık ve pürüzlerden arındırılmış, çocuk ve insan sağlığına zararsız doğal yağlarla korunmuş yüzeylere sahiptir.
+            <h3 class="h5 mb-2 font-weight-bold tm-feature-title">@Localizer["Feature2_Title"]</h3>
+            <p class="text-muted tm-feature-desc">
+              @Localizer["Feature2_Desc"]
             </p>
           </div>
         </div>
@@ -60,9 +101,9 @@
         <div class="tm-feature-item d-flex">
           <div class="tm-feature-num">03</div>
           <div class="tm-feature-body ml-4">
-            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Kusursuz Butik İşçilik</h3>
-            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
-              Ahşap parçalar hassas atölye kesiminden sonra el zımparası ile tek tek zımparalanır, pürüzsüzleştirilir ve montaja hazır hale getirilir.
+            <h3 class="h5 mb-2 font-weight-bold tm-feature-title">@Localizer["Feature3_Title"]</h3>
+            <p class="text-muted tm-feature-desc">
+              @Localizer["Feature3_Desc"]
             </p>
           </div>
         </div>
@@ -72,9 +113,9 @@
         <div class="tm-feature-item d-flex">
           <div class="tm-feature-num">04</div>
           <div class="tm-feature-body ml-4">
-            <h3 class="h4 mb-2 font-weight-bold" style="color: var(--text-primary); font-weight: 700;">Özgün &amp; Minimalist Estetik</h3>
-            <p class="text-muted" style="line-height: 1.7; font-size: 0.95rem;">
-              Yaşam alanlarınıza dinginlik, huzur ve şıklık getiren, gereksiz tüm fazlalıklardan arındırılmış, fonksiyonel tasarımlar geliştiriyoruz.
+            <h3 class="h5 mb-2 font-weight-bold tm-feature-title">@Localizer["Feature4_Title"]</h3>
+            <p class="text-muted tm-feature-desc">
+              @Localizer["Feature4_Desc"]
             </p>
           </div>
         </div>
@@ -83,14 +124,15 @@
   </div>
 </section>
 
+<!-- Değerlerimiz Section -->
 <section id="testimonials" class="tm-section-pad-top tm-parallax-2">
   <div class="container tm-testimonials-content">
     <div class="row">
       <div class="col-lg-10 offset-lg-1 text-center mb-5">
-        <span class="tm-section-subtitle-badge" style="color: rgba(255,255,255,0.7) !important;">STANDARTLARIMIZ</span>
-        <h2 class="text-white text-center mb-4 tm-section-title" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Değerlerimiz &amp; Standartlarımız</h2>
-        <p class="mx-auto tm-section-desc text-center" style="color: rgba(255, 255, 255, 0.8); font-size: 1.15rem; line-height: 1.8;">
-          Üretimde odak noktamız; yaşam alanlarınızla güvenle buluşturabileceğiniz doğal malzemeler, kusursuz el işçiliği ve zamansız tasarımlardır.
+        <span class="tm-section-subtitle-badge tm-badge-light">@Localizer["Values_Header"]</span>
+        <h2 class="text-white text-center mb-4 tm-section-title tm-serif-title">@Localizer["Values_Title"]</h2>
+        <p class="mx-auto tm-section-desc text-center text-white-80">
+          @Localizer["Values_Desc"]
         </p>
       </div>
     </div>
@@ -101,8 +143,8 @@
           <div class="tm-trust-icon-box">
             <i class="fas fa-seedling"></i>
           </div>
-          <h3 class="h4 text-white font-weight-bold mb-3">Doğal Malzemeler</h3>
-          <p class="mb-0">Ahşabın sıcaklığını ve eşsiz dokusunu koruyan, tamamen organik ve uzun ömürlü tasarımlar.</p>
+          <h3 class="h4 text-white font-weight-bold mb-3 tm-serif-title">@Localizer["Value1_Title"]</h3>
+          <p class="mb-0">@Localizer["Value1_Desc"]</p>
         </article>
       </div>
       
@@ -111,8 +153,8 @@
           <div class="tm-trust-icon-box">
             <i class="fas fa-shield-alt"></i>
           </div>
-          <h3 class="h4 text-white font-weight-bold mb-3">Sağlıklı Dokunuşlar</h3>
-          <p class="mb-0">Yuvarlatılmış yumuşak kenarlar, pürüzsüz yüzeyler ve kimyasal içermeyen doğal koruyucular.</p>
+          <h3 class="h4 text-white font-weight-bold mb-3 tm-serif-title">@Localizer["Value2_Title"]</h3>
+          <p class="mb-0">@Localizer["Value2_Desc"]</p>
         </article>
       </div>
 
@@ -121,8 +163,8 @@
           <div class="tm-trust-icon-box">
             <i class="fas fa-ruler-combined"></i>
           </div>
-          <h3 class="h4 text-white font-weight-bold mb-3">Butik Üretim Disiplini</h3>
-          <p class="mb-0">Tasarım, hassas kesim, el zımparası ve koruyucu yağlama adımları atölye özeniyle yapılır.</p>
+          <h3 class="h4 text-white font-weight-bold mb-3 tm-serif-title">@Localizer["Value3_Title"]</h3>
+          <p class="mb-0">@Localizer["Value3_Desc"]</p>
         </article>
       </div>
     </div>
@@ -130,14 +172,100 @@
   <div class="tm-bg-overlay"></div>
 </section>
 
+<!-- Malzemelerimiz Section (Grovemade Material Focus Style) -->
+<section id="materials" class="tm-section-pad-top tm-materials-section">
+  <div class="container">
+    <div class="row">
+      <div class="text-center col-lg-10 offset-lg-1 mb-5">
+        <span class="tm-section-subtitle-badge">@Localizer["Materials_Header"]</span>
+        <h2 class="tm-section-title tm-serif-title mb-4">@Localizer["Materials_Title"]</h2>
+        <p class="mx-auto tm-section-desc text-muted">
+          @Localizer["Materials_Desc"]
+        </p>
+      </div>
+    </div>
+    
+    <div class="row tm-materials-grid">
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="tm-material-card h-100">
+          <div class="tm-material-img-wrapper">
+            <picture>
+              <source srcset="@Url.Content("~/images/products/dogal-ahsap-masa-thumb.webp")" type="image/webp" />
+              <img src="~/images/products/dogal-ahsap-masa.png" alt="@Localizer["Material1_Title"]" class="img-fluid tm-material-img" width="640" height="360" loading="lazy" decoding="async" asp-append-version="true" />
+            </picture>
+          </div>
+          <div class="tm-material-info">
+            <h3 class="h5 tm-material-title tm-serif-title">@Localizer["Material1_Title"]</h3>
+            <p class="tm-material-desc text-muted">
+              @Localizer["Material1_Desc"]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="tm-material-card h-100">
+          <div class="tm-material-img-wrapper">
+            <picture>
+              <source srcset="@Url.Content("~/images/products/cam-orta-sehpa-thumb.webp")" type="image/webp" />
+              <img src="~/images/products/cam-orta-sehpa.png" alt="@Localizer["Material2_Title"]" class="img-fluid tm-material-img" width="640" height="360" loading="lazy" decoding="async" asp-append-version="true" />
+            </picture>
+          </div>
+          <div class="tm-material-info">
+            <h3 class="h5 tm-material-title tm-serif-title">@Localizer["Material2_Title"]</h3>
+            <p class="tm-material-desc text-muted">
+              @Localizer["Material2_Desc"]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="tm-material-card h-100">
+          <div class="tm-material-img-wrapper">
+            <picture>
+              <source srcset="@Url.Content("~/images/products/kutuk-tv-sehpayi-thumb.webp")" type="image/webp" />
+              <img src="~/images/products/kutuk-tv-sehpayi.png" alt="@Localizer["Material3_Title"]" class="img-fluid tm-material-img" width="640" height="360" loading="lazy" decoding="async" asp-append-version="true" />
+            </picture>
+          </div>
+          <div class="tm-material-info">
+            <h3 class="h5 tm-material-title tm-serif-title">@Localizer["Material3_Title"]</h3>
+            <p class="tm-material-desc text-muted">
+              @Localizer["Material3_Desc"]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="tm-material-card h-100">
+          <div class="tm-material-img-wrapper">
+            <picture>
+              <source srcset="@Url.Content("~/images/products/bahce-masasi-thumb.webp")" type="image/webp" />
+              <img src="~/images/products/bahce-masasi.png" alt="@Localizer["Material4_Title"]" class="img-fluid tm-material-img" width="640" height="360" loading="lazy" decoding="async" asp-append-version="true" />
+            </picture>
+          </div>
+          <div class="tm-material-info">
+            <h3 class="h5 tm-material-title tm-serif-title">@Localizer["Material4_Title"]</h3>
+            <p class="tm-material-desc text-muted">
+              @Localizer["Material4_Desc"]
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Koleksiyonumuz Section -->
 <section id="gallery" class="tm-section-pad-top">
   <div class="container">
     <div class="row">
       <div class="text-center col-lg-10 offset-lg-1 mb-5">
-        <span class="tm-section-subtitle-badge">ÖZGÜN TASARIMLAR</span>
-        <h2 class="tm-text-primary tm-section-title mb-4" style="font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em;">Koleksiyonumuz</h2>
-        <p class="mx-auto tm-section-desc text-muted" style="max-width: 700px; font-size: 1.1rem; line-height: 1.7;">
-          Doğadan ilham alan, her biri el emeğiyle özenle hazırlanan özgün ahşap craft ve dekorasyon ürünlerimizden seçkiler.
+        <span class="tm-section-subtitle-badge">@Localizer["Gallery_Header"]</span>
+        <h2 class="tm-section-title tm-serif-title mb-4">@Localizer["Gallery_Title"]</h2>
+        <p class="mx-auto tm-section-desc text-muted">
+          @Localizer["Gallery_Desc"]
         </p>
       </div>
     </div>
@@ -153,21 +281,30 @@
                   @{
                       var imageUrl = product.ImageUrl ?? "";
                       var isExternalImage = imageUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || imageUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
-                      var finalImageUrl = isExternalImage ? imageUrl : Url.Content("~/" + imageUrl);
+                      var optimizedImagePath = isExternalImage ? imageUrl : ToWebpPath(imageUrl);
+                      var finalImageUrl = isExternalImage ? imageUrl : Url.Content("~/" + optimizedImagePath);
                       
-                      var thumbnailUrl = product.ThumbnailUrl ?? "";
+                      var thumbnailUrl = product.ThumbnailUrl ?? imageUrl;
                       var isExternalThumb = thumbnailUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || thumbnailUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
-                      var finalThumbnailUrl = isExternalThumb ? thumbnailUrl : Url.Content("~/" + thumbnailUrl);
+                      var thumbWebpPath = isExternalThumb ? thumbnailUrl : ToThumbWebpPath(thumbnailUrl);
+                      var thumbFallbackPath = isExternalThumb ? thumbnailUrl : thumbnailUrl;
+                      var finalThumbnailWebp = isExternalThumb ? null : Url.Content("~/" + thumbWebpPath);
+                      var finalThumbnailUrl = isExternalThumb ? thumbnailUrl : Url.Content("~/" + thumbFallbackPath);
                   }
                   <a href="@finalImageUrl" class="tm-gallery-card-link">
                     <div class="tm-gallery-card">
                       <div class="tm-gallery-img-container">
-                        <img src="@finalThumbnailUrl" onerror="this.onerror=null; this.src='/themes/infinite-loop/img/toy-gallery-thumb-0@(product.Id > 0 && product.Id <= 6 ? product.Id : 1).jpg';" alt="@product.Description" class="img-fluid tm-gallery-img">
+                        <picture>
+                          @if (finalThumbnailWebp != null)
+                          {
+                            <source srcset="@finalThumbnailWebp" type="image/webp" />
+                          }
+                          <img src="@finalThumbnailUrl" alt="@Localizer[product.Name]" class="img-fluid tm-gallery-img" width="640" height="360" loading="lazy" decoding="async">
+                        </picture>
                       </div>
                       <div class="tm-gallery-card-info mt-3 text-left">
-                        <span class="tm-gallery-card-category text-uppercase small font-weight-bold">@product.CategoryName</span>
-                        <h4 class="tm-gallery-card-title my-1 font-weight-bold">@product.Name</h4>
-                        <div class="tm-gallery-card-price mt-2 font-weight-bold">@product.Price.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))</div>
+                        <span class="tm-gallery-card-category text-uppercase small font-weight-bold">@Localizer[product.CategoryName ?? ""]</span>
+                        <h3 class="tm-gallery-card-title my-1 font-weight-bold tm-serif-title">@Localizer[product.Name]</h3>
                       </div>
                     </div>
                   </a>
@@ -176,7 +313,7 @@
             }
             else
             {
-              <p class="text-center text-muted w-100 py-5">Koleksiyonumuz yakında güncellenecektir.</p>
+              <p class="text-center text-muted w-100 py-5">@Localizer["Gallery_Empty"]</p>
             }
           </div>
         </div>
@@ -185,13 +322,14 @@
   </div>
 </section>
 
+<!-- Sipariş & İletişim Section -->
 <section id="contact" class="tm-section-pad-top tm-parallax-2">
   <div class="container tm-container-contact">
     <div class="row">
       <div class="text-center col-12">
-        <h2 class="tm-section-title mb-4">Sipariş &amp; İletişim</h2>
+        <h2 class="tm-section-title tm-serif-title mb-4">@Localizer["Contact_Title"]</h2>
         <p class="mb-5 text-white">
-          Sipariş ve ürün bilgisi için aşağıdaki iletişim kanallarından bize ulaşabilir ya da doğrudan mesaj gönderebilirsiniz.
+          @Localizer["Contact_Intro"]
         </p>
       </div>
     </div>
@@ -199,62 +337,70 @@
     <div class="row">
       <!-- Contact Info Section -->
       <div class="col-sm-12 col-md-5 d-flex flex-column justify-content-start mb-5 mb-md-0 text-white">
-        <h3 class="mb-4 text-white h4">İletişim Bilgilerimiz</h3>
+        <h3 class="mb-4 text-white h4 tm-serif-title">@Localizer["Contact_InfoTitle"]</h3>
         
-        @if (hasInstagram)
-        {
-          <div class="contact-item mb-4">
-            <a rel="nofollow noopener noreferrer" href="@instagramUrl" target="_blank" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
-              <i class="fab fa-2x fa-instagram mr-3 align-middle" style="color: #ff5e97;"></i>
-              <span class="align-middle">@instagramLabel</span>
+        <div class="tm-contact-info-list">
+          @if (hasInstagram)
+          {
+            <a rel="nofollow noopener noreferrer" href="@instagramUrl" target="_blank" class="tm-contact-item">
+              <div class="tm-contact-icon-wrapper">
+                <i class="fab fa-instagram tm-contact-icon tm-icon-instagram"></i>
+              </div>
+              <span class="tm-contact-text">@instagramLabel</span>
             </a>
-          </div>
-        }
+          }
 
-        @if (hasWhatsApp)
-        {
-          <div class="contact-item mb-4">
-            <a rel="nofollow noopener noreferrer" href="@whatsappUrl" target="_blank" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
-              <i class="fab fa-2x fa-whatsapp mr-3 align-middle" style="color: #25d366;"></i>
-              <span class="align-middle">@whatsappLabel</span>
+          @if (hasWhatsApp)
+          {
+            <a rel="nofollow noopener noreferrer" href="@whatsappUrl" target="_blank" class="tm-contact-item">
+              <div class="tm-contact-icon-wrapper">
+                <i class="fab fa-whatsapp tm-contact-icon tm-icon-whatsapp"></i>
+              </div>
+              <span class="tm-contact-text">@whatsappLabel</span>
             </a>
-          </div>
-        }
+          }
 
-        @if (hasEmail)
-        {
-          <div class="contact-item mb-4">
-            <a rel="nofollow" href="mailto:@email" class="item-link" style="color: #fff; text-decoration: none; font-size: 1.1rem;">
-              <i class="far fa-2x fa-envelope mr-3 align-middle" style="color: #00a0e9;"></i>
-              <span class="align-middle">@email</span>
+          @if (hasPhone)
+          {
+            <a rel="nofollow" href="@phoneUrl" class="tm-contact-item">
+              <div class="tm-contact-icon-wrapper">
+                <i class="fas fa-phone tm-contact-icon tm-icon-phone"></i>
+              </div>
+              <span class="tm-contact-text">@phoneLabel</span>
             </a>
-          </div>
-        }
+          }
 
-        @if (hasAddress)
-        {
-          <div class="contact-item mb-4">
-            <div class="item-link d-flex align-items-center" style="color: #fff; font-size: 1.1rem;">
-              <i class="fas fa-2x fa-map-marker-alt mr-3" style="color: #ff3e3e;"></i>
-              <span>@addressLabel</span>
+          @if (hasEmail)
+          {
+            <a rel="nofollow" href="mailto:@email" class="tm-contact-item">
+              <div class="tm-contact-icon-wrapper">
+                <i class="far fa-envelope tm-contact-icon tm-icon-email"></i>
+              </div>
+              <span class="tm-contact-text">@email</span>
+            </a>
+          }
+
+          @if (hasAddress)
+          {
+            <div class="tm-contact-item">
+              <div class="tm-contact-icon-wrapper">
+                <i class="fas fa-map-marker-alt tm-contact-icon tm-icon-address"></i>
+              </div>
+              <span class="tm-contact-text">@addressLabel</span>
             </div>
-          </div>
-        }
+          }
 
-        @if (!hasAnyContact)
-        {
-          <p class="text-white-50">Doğrulanmış iletişim kanalları yakında eklenecektir.</p>
-        }
-        
-        <div class="mt-4 text-center text-md-left">
-          <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=150&h=150&q=80" class="img-fluid rounded-circle tm-contact-visual shadow" style="max-width: 130px; height: 130px; object-fit: cover; border: 3px solid rgba(255,255,255,0.4);" alt="Ezgi Craft Atölyesi" />
+          @if (!hasAnyContact)
+          {
+            <p class="text-white-50">@Localizer["Contact_NoChannels"]</p>
+          }
         </div>
       </div>
 
       <!-- Interactive Form Section -->
       <div class="col-sm-12 col-md-7">
-        <div class="bg-white p-4 rounded shadow tm-contact-form-container" style="border-radius: 8px;">
-          <h3 class="tm-text-primary mb-4 text-center h4 font-weight-bold" style="font-weight: 700;">Hızlı İletişim Formu</h3>
+        <div class="bg-white p-4 rounded shadow tm-contact-form-container">
+          <h3 class="tm-text-primary mb-4 text-center h4 font-weight-bold tm-serif-title">@Localizer["Contact_FormTitle"]</h3>
           
           @if (TempData["SuccessMessage"] != null)
           {
@@ -273,22 +419,22 @@
           <form asp-action="SubmitContactMessage" asp-controller="Home" method="post" class="text-left tm-minimal-form">
             @Html.AntiForgeryToken()
             <div class="form-group mb-4">
-              <input type="text" class="form-control tm-minimal-input" id="FullName" name="FullName" required max-length="100" placeholder="Adınız Soyadınız *">
+              <input type="text" class="form-control tm-minimal-input" id="FullName" name="FullName" required max-length="100" placeholder="@Localizer["Contact_Name"]">
             </div>
             
             <div class="form-group mb-4">
-              <input type="email" class="form-control tm-minimal-input" id="Email" name="Email" required max-length="100" placeholder="E-posta Adresiniz *">
+              <input type="email" class="form-control tm-minimal-input" id="Email" name="Email" required max-length="100" placeholder="@Localizer["Contact_Email"]">
             </div>
             
             <div class="form-group mb-4">
-              <input type="text" class="form-control tm-minimal-input" id="Subject" name="Subject" max-length="150" placeholder="Konu Başlığı">
+              <input type="text" class="form-control tm-minimal-input" id="Subject" name="Subject" max-length="150" placeholder="@Localizer["Contact_Subject"]">
             </div>
             
             <div class="form-group mb-4">
-              <textarea class="form-control tm-minimal-input" id="Message" name="Message" rows="4" required max-length="2000" placeholder="Mesajınız... *"></textarea>
+              <textarea class="form-control tm-minimal-input" id="Message" name="Message" rows="4" required max-length="2000" placeholder="@Localizer["Contact_Message"]"></textarea>
             </div>
             
-            <button type="submit" class="btn btn-primary btn-block tm-btn-primary py-3 font-weight-bold text-uppercase w-100" style="letter-spacing: 1px;">MESAJI GÖNDER</button>
+            <button type="submit" class="btn btn-primary btn-block tm-btn-primary py-3 font-weight-bold text-uppercase w-100">@Localizer["Contact_Submit"]</button>
           </form>
         </div>
       </div>
@@ -297,7 +443,8 @@
 
   <footer class="text-center small tm-footer mt-5">
     <p class="mb-0 text-white">
-      Copyright &copy; @DateTime.Now.Year Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri
+      @Localizer["Footer_Copyright", DateTime.Now.Year]
     </p>
   </footer>
+  <div class="tm-bg-overlay"></div>
 </section>

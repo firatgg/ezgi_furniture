@@ -6,10 +6,8 @@ https://www.tooplate.com/view/2117-infinite-loop
 
 */
 
-@import url("https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900");
-
 body {
-	font-family: "Raleway", sans-serif;
+	font-family: "Plus Jakarta Sans", sans-serif;
 	font-size: 1.2em;
   color: #707070;
   margin: 0;
@@ -146,7 +144,12 @@ blockquote {
 
 #infinite {
 	background-color: #222;
-  background-image: linear-gradient(rgba(28, 37, 30, 0.35), rgba(28, 37, 30, 0.35)), url(https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1920&q=80);
+  background-image: linear-gradient(rgba(28, 37, 30, 0.35), rgba(28, 37, 30, 0.35)), url(/images/products/dogal-ahsap-masa.png);
+  background-image: linear-gradient(rgba(28, 37, 30, 0.35), rgba(28, 37, 30, 0.35)),
+    image-set(
+      url(/images/products/dogal-ahsap-masa-hero.webp) type("image/webp"),
+      url(/images/products/dogal-ahsap-masa.png) type("image/png")
+    );
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -246,15 +249,26 @@ blockquote {
 /* Testimonials */
 #testimonials {
   color: white;
-  background-image: linear-gradient(rgba(22, 35, 28, 0.8), rgba(22, 35, 28, 0.8)), url(https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1920&q=80);
+  background-image: linear-gradient(rgba(22, 20, 18, 0.78), rgba(22, 20, 18, 0.78)), url(/images/products/klasik-ayakli-masa.png);
+  background-image: linear-gradient(rgba(22, 20, 18, 0.78), rgba(22, 20, 18, 0.78)),
+    image-set(
+      url(/images/products/klasik-ayakli-masa.webp) type("image/webp"),
+      url(/images/products/klasik-ayakli-masa.png) type("image/png")
+    );
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
   position: relative;
 }
 
 @media (max-width: 991px) {
   #testimonials {
-    background-image: linear-gradient(rgba(22, 35, 28, 0.82), rgba(22, 35, 28, 0.82)), url(https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1920&q=80);
+    background-image: linear-gradient(rgba(22, 20, 18, 0.82), rgba(22, 20, 18, 0.82)), url(/images/products/klasik-ayakli-masa.png);
+    background-image: linear-gradient(rgba(22, 20, 18, 0.82), rgba(22, 20, 18, 0.82)),
+      image-set(
+        url(/images/products/klasik-ayakli-masa.webp) type("image/webp"),
+        url(/images/products/klasik-ayakli-masa.png) type("image/png")
+      );
   }
 }
 
@@ -530,7 +544,12 @@ figure.effect-honey:hover h2 i {
 #contact {
   color: white;
   background-color: #001828;
-  background-image: linear-gradient(rgba(17, 28, 25, 0.85), rgba(17, 28, 25, 0.85)), url(https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80);
+  background-image: linear-gradient(rgba(17, 15, 13, 0.82), rgba(17, 15, 13, 0.82)), url(/images/products/toplanti-masasi.png);
+  background-image: linear-gradient(rgba(17, 15, 13, 0.82), rgba(17, 15, 13, 0.82)),
+    image-set(
+      url(/images/products/toplanti-masasi.webp) type("image/webp"),
+      url(/images/products/toplanti-masasi.png) type("image/png")
+    );
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

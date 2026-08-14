@@ -66,9 +66,9 @@ namespace ezgi_mobilya.Data
             });
 
             // Seed Categories
-            var catDecor = new Category { Id = 1, Name = "Ahşap Dekorasyon", Description = "Yaşam alanlarınıza şıklık katacak el emeği ahşap dekoratif ürünler.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
-            var catKitchen = new Category { Id = 2, Name = "Mutfak & Sunum", Description = "Doğal ahşaptan üretilmiş, sağlıklı mutfak ve sunum gereçleri.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
-            var catKids = new Category { Id = 3, Name = "Çocuk & Montessori", Description = "Bebek ve çocuklar için organik ahşap oyuncaklar, gelişim setleri ve Montessori mobilyaları.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
+            var catDecor = new Category { Id = 1, Name = "Özel Tasarım Masalar", Description = "Doğal ahşaptan, el işçiliğiyle üretilmiş benzersiz yemek, toplantı ve bahçe masaları.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
+            var catKitchen = new Category { Id = 2, Name = "TV Üniteleri & Sehpalar", Description = "Yaşam alanlarınıza estetik ve fonksiyonellik katacak ahşap TV üniteleri ve orta sehpalar.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
+            var catKids = new Category { Id = 3, Name = "Mutfak & Banko Tasarımları", Description = "Modern mutfak tezgahları, resepsiyon bankoları ve özel tasarım ahşap mobilyalar.", CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc) };
 
             builder.Entity<Category>().HasData(catDecor, catKitchen, catKids);
 
@@ -77,72 +77,108 @@ namespace ezgi_mobilya.Data
                 new Product
                 {
                     Id = 1,
-                    CategoryId = 1,
-                    Name = "Geometrik Duvar Dekoru",
-                    Description = "El emeği geometrik ahşap duvar süsü",
-                    Price = 450.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1502005229762-fc1b2b812ca5?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1502005229762-fc1b2b812ca5?auto=format&fit=crop&w=400&q=80",
+                    CategoryId = 3,
+                    Name = "Modern Ahşap Mutfak Tezgahı",
+                    Description = "Siyah granit ve beyaz dolaplarla uyumlu, dayanıklı ve estetik ahşap mutfak tezgahı tasarımı.",
+                    Price = 12500.00m,
+                    ImageUrl = "images/products/mutfak-tezgahi.png",
+                    ThumbnailUrl = "images/products/mutfak-tezgahi.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Product
                 {
                     Id = 2,
-                    CategoryId = 2,
-                    Name = "Ahşap Sunum Tabağı",
-                    Description = "Zeytin ağacından el yapımı sunum tabağı",
-                    Price = 320.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1596797882942-159027409f58?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1596797882942-159027409f58?auto=format&fit=crop&w=400&q=80",
+                    CategoryId = 1,
+                    Name = "Doğal Kenarlı Ahşap Yemek Masası",
+                    Description = "Tek parça kütükten üretilmiş, doğal kenar detaylarına sahip şık ahşap yemek masası.",
+                    Price = 8500.00m,
+                    ImageUrl = "images/products/dogal-ahsap-masa.png",
+                    ThumbnailUrl = "images/products/dogal-ahsap-masa.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Product
                 {
                     Id = 3,
-                    CategoryId = 3,
-                    Name = "Organik Diş Kaşıyıcı",
-                    Description = "Akçaağaçtan pürüzsüz bebek diş kaşıyıcı",
-                    Price = 125.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=400&q=80",
+                    CategoryId = 2,
+                    Name = "Kütük Ahşap TV Sehpası",
+                    Description = "Tekerlekli tasarımıyla mobil ve fonksiyonel, kalın kütük gövdeli doğal TV sehpası.",
+                    Price = 4500.00m,
+                    ImageUrl = "images/products/kutuk-tv-sehpayi.png",
+                    ThumbnailUrl = "images/products/kutuk-tv-sehpayi.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Product
                 {
                     Id = 4,
-                    CategoryId = 1,
-                    Name = "Ahşap Masa Lambası",
-                    Description = "Rustik tarzda el yapımı ahşap lamba",
-                    Price = 750.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=400&q=80",
+                    CategoryId = 3,
+                    Name = "Modern Resepsiyon Bankosu",
+                    Description = "Ofis ve iş yerleri için minimalist tasarımlı, beyaz lake kaplama modern resepsiyon masası.",
+                    Price = 14500.00m,
+                    ImageUrl = "images/products/resepsiyon-bankosu.png",
+                    ThumbnailUrl = "images/products/resepsiyon-bankosu.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Product
                 {
                     Id = 5,
-                    CategoryId = 3,
-                    Name = "Montessori Aktivite Masası",
-                    Description = "Doğal çam ağacından Montessori aktivite masası ve sandalyesi",
-                    Price = 1850.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=400&q=80",
+                    CategoryId = 2,
+                    Name = "Cam Kaplama Ahşap Orta Sehpa",
+                    Description = "Ceviz ağacından üretilmiş, üst yüzeyi temperli cam kaplı modern orta sehpa.",
+                    Price = 3200.00m,
+                    ImageUrl = "images/products/cam-orta-sehpa.png",
+                    ThumbnailUrl = "images/products/cam-orta-sehpa.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Product
                 {
                     Id = 6,
+                    CategoryId = 1,
+                    Name = "Metal Ayaklı Ahşap Toplantı Masası",
+                    Description = "Geniş ofisler için endüstriyel metal ayaklı, masif ahşap büyük toplantı masası.",
+                    Price = 16500.00m,
+                    ImageUrl = "images/products/toplanti-masasi.png",
+                    ThumbnailUrl = "images/products/toplanti-masasi.png",
+                    IsActive = true,
+                    CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new Product
+                {
+                    Id = 7,
+                    CategoryId = 1,
+                    Name = "X Metal Ayaklı Bahçe Masası",
+                    Description = "Dış mekan koşullarına dayanıklı, X tipi metal ayaklı geniş ahşap bahçe masası.",
+                    Price = 9500.00m,
+                    ImageUrl = "images/products/bahce-masasi.png",
+                    ThumbnailUrl = "images/products/bahce-masasi.png",
+                    IsActive = true,
+                    CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new Product
+                {
+                    Id = 8,
                     CategoryId = 2,
-                    Name = "Ahşap Kahve Tepsisi",
-                    Description = "Ceviz ağacından el yapımı şık kahve tepsisi",
-                    Price = 380.00m,
-                    ImageUrl = "https://images.unsplash.com/photo-1581608370197-0429bfd19641?auto=format&fit=crop&w=800&q=80",
-                    ThumbnailUrl = "https://images.unsplash.com/photo-1581608370197-0429bfd19641?auto=format&fit=crop&w=400&q=80",
+                    Name = "Modern Duvar Tipi TV Ünitesi",
+                    Description = "Koyu renk ahşap kaplama, bol saklama alanlı ve şık tasarımlı konsol ve TV ünitesi seti.",
+                    Price = 11500.00m,
+                    ImageUrl = "images/products/modern-tv-unitesi.png",
+                    ThumbnailUrl = "images/products/modern-tv-unitesi.png",
+                    IsActive = true,
+                    CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new Product
+                {
+                    Id = 9,
+                    CategoryId = 1,
+                    Name = "Döküm Ayaklı Klasik Ahşap Masa",
+                    Description = "Klasik döküm demir ayaklar üzerine oturtulmuş, zengin ahşap dokulu çalışma ve yemek masası.",
+                    Price = 7800.00m,
+                    ImageUrl = "images/products/klasik-ayakli-masa.png",
+                    ThumbnailUrl = "images/products/klasik-ayakli-masa.png",
                     IsActive = true,
                     CreatedDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc)
                 }

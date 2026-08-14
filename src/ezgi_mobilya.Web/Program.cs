@@ -1,11 +1,14 @@
+using System.Globalization;
 using ezgi_mobilya.Core.Repositories;
 using ezgi_mobilya.Core.UnitOfWorks;
 using ezgi_mobilya.Data;
 using ezgi_mobilya.Data.Repositories;
 using ezgi_mobilya.Data.UnitOfWorks;
 using ezgi_mobilya.Service;
+using ezgi_mobilya.Web.Localization;
 using ezgi_mobilya.Web.Middlewares;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -18,7 +21,27 @@ builder.Host.UseSerilog((context, configuration) =>
 });
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddLocalization();
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = AppCultures.Supported
+        .Select(culture => new CultureInfo(culture))
+        .ToList();
+
+    options.DefaultRequestCulture = new RequestCulture(AppCultures.Default);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+    options.ApplyCurrentCultureToResponseHeaders = true;
+    options.RequestCultureProviders =
+    [
+        new CookieRequestCultureProvider(),
+        new QueryStringRequestCultureProvider()
+    ];
+});
 
 // Database connection
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -113,6 +136,8 @@ app.UseMiddleware<ExceptionMiddleware>(); // Custom Exception Middleware
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseRequestLocalization();
 
 app.UseRouting();
 

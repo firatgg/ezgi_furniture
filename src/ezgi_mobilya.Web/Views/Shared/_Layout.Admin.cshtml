@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Ezgi Craft Yönetim Paneli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="~/images/logo_assets/favicon-32.png" type="image/png" sizes="32x32" asp-append-version="true" />
+    <link rel="icon" href="~/images/logo_assets/favicon.ico" type="image/x-icon" asp-append-version="true" />
+    <link rel="apple-touch-icon" href="~/images/logo_assets/apple-touch-icon.png" sizes="180x180" asp-append-version="true" />
     <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" />
     <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" />
@@ -111,8 +117,10 @@
     
     <!-- Top Admin Header -->
     <nav class="navbar navbar-expand-lg navbar-admin d-flex justify-content-between align-items-center">
-        <a class="navbar-brand text-uppercase d-flex align-items-center" href="/Admin" style="color: var(--color-primary); font-weight: 800; font-size: 1.5rem; letter-spacing: 1px;">
-            <i class="fas fa-hammer mr-2"></i> Ezgi Craft Panel
+        <a class="navbar-brand admin-navbar-brand d-flex align-items-center" href="/Admin" aria-label="Ezgi Craft Yönetim Paneli">
+            <img src="~/images/logo_assets/logo_nav.png" alt="Ezgi Craft" class="admin-navbar-logo admin-navbar-logo--dark" width="356" height="120" asp-append-version="true" />
+            <img src="~/images/logo_assets/logo_nav_white.png" alt="" class="admin-navbar-logo admin-navbar-logo--light" width="356" height="120" aria-hidden="true" asp-append-version="true" />
+            <span class="admin-navbar-label">Panel</span>
         </a>
         <div class="d-flex align-items-center">
             <button id="themeToggle" class="admin-theme-btn mr-3" title="Mod Değiştir">
@@ -198,5 +206,6 @@
             });
         });
     </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

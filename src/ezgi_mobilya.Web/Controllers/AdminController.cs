@@ -1,9 +1,12 @@
 using ezgi_mobilya.Service.DTOs;
 using ezgi_mobilya.Service.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ezgi_mobilya.Web.Controllers
@@ -16,6 +19,7 @@ namespace ezgi_mobilya.Web.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IContactMessageService _contactMessageService;
         private readonly ISocialMediaService _socialMediaService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<AdminController> _logger;
 
         public AdminController(
@@ -23,12 +27,14 @@ namespace ezgi_mobilya.Web.Controllers
             ICategoryService categoryService,
             IContactMessageService contactMessageService,
             ISocialMediaService socialMediaService,
+            IWebHostEnvironment webHostEnvironment,
             ILogger<AdminController> logger)
         {
             _productService = productService;
             _categoryService = categoryService;
             _contactMessageService = contactMessageService;
             _socialMediaService = socialMediaService;
+            _webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
 
@@ -139,6 +145,160 @@ namespace ezgi_mobilya.Web.Controllers
             }
 
             return RedirectToAction(nameof(SocialMedia));
+        }
+
+        // 5. CREATE PRODUCT (GET)
+        public async Task<IActionResult> CreateProduct()
+        {
+            ViewBag.Categories = await _categoryService.GetAllAsync();
+            return View(new ProductDto { IsActive = true });
+        }
+
+        // 5. CREATE PRODUCT (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateProduct(ProductDto productDto, IFormFile? imageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (imageFile != null && imageFile.Length > 0)
+                    {
+                        var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(imageFile.FileName);
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(fileStream);
+                        }
+                        productDto.ImageUrl = "images/products/" + uniqueFileName;
+                        productDto.ThumbnailUrl = "images/products/" + uniqueFileName;
+                    }
+                    else
+                    {
+                        productDto.ImageUrl = "themes/infinite-loop/img/toy-gallery-thumb-01.jpg";
+                        productDto.ThumbnailUrl = "themes/infinite-loop/img/toy-gallery-thumb-01.jpg";
+                    }
+
+                    await _productService.AddAsync(productDto);
+                    TempData["AdminSuccess"] = "Ürün başarıyla eklendi.";
+                    return RedirectToAction(nameof(Products));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ürün eklenirken hata oluştu.");
+                    TempData["AdminError"] = "Ürün eklenirken bir hata oluştu.";
+                }
+            }
+
+            ViewBag.Categories = await _categoryService.GetAllAsync();
+            return View(productDto);
+        }
+
+        // 6. EDIT PRODUCT (GET)
+        public async Task<IActionResult> EditProduct(int id)
+        {
+            var product = await _productService.GetByIdAsync(id);
+            if (product == null)
+            {
+                TempData["AdminError"] = "Ürün bulunamadı.";
+                return RedirectToAction(nameof(Products));
+            }
+
+            ViewBag.Categories = await _categoryService.GetAllAsync();
+            return View(product);
+        }
+
+        // 6. EDIT PRODUCT (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProduct(ProductDto productDto, IFormFile? imageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (imageFile != null && imageFile.Length > 0)
+                    {
+                        var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(imageFile.FileName);
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(fileStream);
+                        }
+
+                        // Delete old file if it exists and is not a default/external one
+                        if (!string.IsNullOrEmpty(productDto.ImageUrl) && !productDto.ImageUrl.StartsWith("http") && !productDto.ImageUrl.StartsWith("themes"))
+                        {
+                            var oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, productDto.ImageUrl.Replace("/", "\\"));
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+
+                        productDto.ImageUrl = "images/products/" + uniqueFileName;
+                        productDto.ThumbnailUrl = "images/products/" + uniqueFileName;
+                    }
+
+                    await _productService.UpdateAsync(productDto);
+                    TempData["AdminSuccess"] = "Ürün başarıyla güncellendi.";
+                    return RedirectToAction(nameof(Products));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Ürün güncellenirken hata oluştu.");
+                    TempData["AdminError"] = "Ürün güncellenirken bir hata oluştu.";
+                }
+            }
+
+            ViewBag.Categories = await _categoryService.GetAllAsync();
+            return View(productDto);
+        }
+
+        // 7. DELETE PRODUCT (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            try
+            {
+                var product = await _productService.GetByIdAsync(id);
+                if (product != null)
+                {
+                    if (!string.IsNullOrEmpty(product.ImageUrl) && !product.ImageUrl.StartsWith("http") && !product.ImageUrl.StartsWith("themes"))
+                    {
+                        var filePath = Path.Combine(_webHostEnvironment.WebRootPath, product.ImageUrl.Replace("/", "\\"));
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            System.IO.File.Delete(filePath);
+                        }
+                    }
+
+                    await _productService.DeleteAsync(id);
+                    TempData["AdminSuccess"] = "Ürün başarıyla silindi.";
+                }
+                else
+                {
+                    TempData["AdminError"] = "Ürün bulunamadı.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürün silinirken hata oluştu.");
+                TempData["AdminError"] = "Ürün silinirken bir hata oluştu.";
+            }
+            return RedirectToAction(nameof(Products));
         }
     }
 }

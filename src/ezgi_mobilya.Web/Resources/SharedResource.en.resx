@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Meta_Title" xml:space="preserve">
+    <value>Ezgi Craft - Natural Wood Designs &amp; Art Pieces</value>
+  </data>
+  <data name="Meta_Description" xml:space="preserve">
+    <value>Ezgi Craft — natural wood furniture, handmade décor and boutique craft pieces. Discover timeless designs, carefully made in our workshop.</value>
+  </data>
+  <data name="Logo_Aria" xml:space="preserve">
+    <value>Ezgi Craft Home</value>
+  </data>
+  <data name="Nav_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Nav_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Nav_Values" xml:space="preserve">
+    <value>Values</value>
+  </data>
+  <data name="Nav_Materials" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="Nav_Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Nav_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ThemeToggle" xml:space="preserve">
+    <value>Dark/Light Mode</value>
+  </data>
+  <data name="Lang_Label" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ScrollDown" xml:space="preserve">
+    <value>Scroll down</value>
+  </data>
+  <data name="Nav_Toggle" xml:space="preserve">
+    <value>Open or close menu</value>
+  </data>
+  <data name="MobileCta_Label" xml:space="preserve">
+    <value>Quick contact</value>
+  </data>
+  <data name="MobileCta_Call" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="MobileCta_WhatsApp" xml:space="preserve">
+    <value>WhatsApp</value>
+  </data>
+  <data name="MobileCta_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Hero_Header" xml:space="preserve">
+    <value>DESIGNED AND MADE BY US</value>
+  </data>
+  <data name="Hero_Title" xml:space="preserve">
+    <value>Simplify Your Living Space.</value>
+  </data>
+  <data name="Hero_Subtitle" xml:space="preserve">
+    <value>We bring the warmth of natural wood, the precision of handcraft and a minimalist aesthetic into your home. Every piece shaped in our workshop is a timeless work of art.</value>
+  </data>
+  <data name="Hero_FirstButton" xml:space="preserve">
+    <value>Explore the Collection</value>
+  </data>
+  <data name="Hero_SecondButton" xml:space="preserve">
+    <value>Get in Touch</value>
+  </data>
+  <data name="About_Header" xml:space="preserve">
+    <value>WHO WE ARE</value>
+  </data>
+  <data name="About_Handmade" xml:space="preserve">
+    <value>100% HANDMADE</value>
+  </data>
+  <data name="About_ImageAlt" xml:space="preserve">
+    <value>Ezgi Craft workshop and handcraft</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Where Design, Material and Craft Meet</value>
+  </data>
+  <data name="About_P1" xml:space="preserve">
+    <value>At Ezgi Craft, we bring nature, aesthetics and handwork into your living spaces. We create more than furniture: original wood designs, artistic décor and handmade craft pieces that make a home feel complete. Durable woods, carefully chosen in our workshop, are given new life by skilled hands.</value>
+  </data>
+  <data name="About_P2" xml:space="preserve">
+    <value>Like nature itself, every piece we make is unique. Far from mass production, our boutique designs are shaped over hours of attention to detail — so your home feels warm, honest and inviting.</value>
+  </data>
+  <data name="About_Button" xml:space="preserve">
+    <value>View the Collection</value>
+  </data>
+  <data name="Feature1_Title" xml:space="preserve">
+    <value>Natural &amp; Healthy Wood</value>
+  </data>
+  <data name="Feature1_Desc" xml:space="preserve">
+    <value>We work with durable woods such as beech, walnut, olive and maple, sourced from sustainable forests with a strong natural grain.</value>
+  </data>
+  <data name="Feature2_Title" xml:space="preserve">
+    <value>Smooth &amp; Protective Finishes</value>
+  </data>
+  <data name="Feature2_Desc" xml:space="preserve">
+    <value>Every surface is free of splinters and roughness, protected with natural oils that are safe for children and everyday living.</value>
+  </data>
+  <data name="Feature3_Title" xml:space="preserve">
+    <value>Boutique Craftsmanship</value>
+  </data>
+  <data name="Feature3_Desc" xml:space="preserve">
+    <value>After precise workshop cuts, each wood piece is sanded by hand, smoothed and prepared for assembly with care.</value>
+  </data>
+  <data name="Feature4_Title" xml:space="preserve">
+    <value>Original &amp; Minimal Aesthetic</value>
+  </data>
+  <data name="Feature4_Desc" xml:space="preserve">
+    <value>We design functional pieces, stripped of excess, that bring calm, comfort and quiet elegance to your living spaces.</value>
+  </data>
+  <data name="Values_Header" xml:space="preserve">
+    <value>OUR STANDARDS</value>
+  </data>
+  <data name="Values_Title" xml:space="preserve">
+    <value>Our Values &amp; Standards</value>
+  </data>
+  <data name="Values_Desc" xml:space="preserve">
+    <value>Our focus in production is natural materials you can trust in your home, flawless handcraft and designs that last.</value>
+  </data>
+  <data name="Value1_Title" xml:space="preserve">
+    <value>Natural Materials</value>
+  </data>
+  <data name="Value1_Desc" xml:space="preserve">
+    <value>Fully organic, long-lasting designs that keep the warmth and unique grain of the wood.</value>
+  </data>
+  <data name="Value2_Title" xml:space="preserve">
+    <value>Gentle Touch</value>
+  </data>
+  <data name="Value2_Desc" xml:space="preserve">
+    <value>Rounded soft edges, smooth surfaces and natural finishes with no harsh chemicals.</value>
+  </data>
+  <data name="Value3_Title" xml:space="preserve">
+    <value>Boutique Production</value>
+  </data>
+  <data name="Value3_Desc" xml:space="preserve">
+    <value>Design, precise cutting, hand sanding and protective oiling are all done with workshop care.</value>
+  </data>
+  <data name="Materials_Header" xml:space="preserve">
+    <value>NATURAL MATERIALS</value>
+  </data>
+  <data name="Materials_Title" xml:space="preserve">
+    <value>Nature’s Finest Materials</value>
+  </data>
+  <data name="Materials_Desc" xml:space="preserve">
+    <value>We use only durable, sustainable woods with a strong natural texture.</value>
+  </data>
+  <data name="Material1_Title" xml:space="preserve">
+    <value>Solid Walnut</value>
+  </data>
+  <data name="Material1_Desc" xml:space="preserve">
+    <value>A luxurious wood with rich grain and deep tones, chosen for dining tables and special pieces.</value>
+  </data>
+  <data name="Material2_Title" xml:space="preserve">
+    <value>Natural Beech</value>
+  </data>
+  <data name="Material2_Desc" xml:space="preserve">
+    <value>A durable wood with a light tone and smooth surface, giving coffee tables and TV units a modern, open look.</value>
+  </data>
+  <data name="Material3_Title" xml:space="preserve">
+    <value>Live-Edge Wood</value>
+  </data>
+  <data name="Material3_Desc" xml:space="preserve">
+    <value>Slabs with natural edges and living texture, carefully worked in the workshop so every piece is one of a kind.</value>
+  </data>
+  <data name="Material4_Title" xml:space="preserve">
+    <value>Wood &amp; Metal</value>
+  </data>
+  <data name="Material4_Desc" xml:space="preserve">
+    <value>Long-lasting, functional designs where industrial metal legs meet a solid wood top.</value>
+  </data>
+  <data name="Gallery_Header" xml:space="preserve">
+    <value>ORIGINAL DESIGNS</value>
+  </data>
+  <data name="Gallery_Title" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Gallery_Desc" xml:space="preserve">
+    <value>A selection of original wood craft and décor, inspired by nature and made by hand.</value>
+  </data>
+  <data name="Gallery_Empty" xml:space="preserve">
+    <value>Our collection will be updated soon.</value>
+  </data>
+  <data name="Contact_Title" xml:space="preserve">
+    <value>Order &amp; Contact</value>
+  </data>
+  <data name="Contact_Intro" xml:space="preserve">
+    <value>Reach us through the channels below for orders and product details, or send a message directly.</value>
+  </data>
+  <data name="Contact_InfoTitle" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="Contact_NoChannels" xml:space="preserve">
+    <value>Verified contact channels will be added soon.</value>
+  </data>
+  <data name="Contact_FormTitle" xml:space="preserve">
+    <value>Quick Contact Form</value>
+  </data>
+  <data name="Contact_Name" xml:space="preserve">
+    <value>Your full name *</value>
+  </data>
+  <data name="Contact_Email" xml:space="preserve">
+    <value>Your email address *</value>
+  </data>
+  <data name="Contact_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Contact_Message" xml:space="preserve">
+    <value>Your message... *</value>
+  </data>
+  <data name="Contact_Submit" xml:space="preserve">
+    <value>SEND MESSAGE</value>
+  </data>
+  <data name="Contact_Success" xml:space="preserve">
+    <value>Your message was sent successfully. We will get back to you as soon as we can.</value>
+  </data>
+  <data name="Contact_Error" xml:space="preserve">
+    <value>Something went wrong while sending your message. Please try again.</value>
+  </data>
+  <data name="Contact_Invalid" xml:space="preserve">
+    <value>Please make sure the form fields are filled in correctly.</value>
+  </data>
+  <data name="Footer_Copyright" xml:space="preserve">
+    <value>Copyright © {0} Ezgi Craft - Natural Wood Designs &amp; Art Pieces</value>
+  </data>
+  <data name="Özel Tasarım Masalar" xml:space="preserve">
+    <value>Custom Design Tables</value>
+  </data>
+  <data name="TV Üniteleri &amp; Sehpalar" xml:space="preserve">
+    <value>TV Units &amp; Coffee Tables</value>
+  </data>
+  <data name="Mutfak &amp; Banko Tasarımları" xml:space="preserve">
+    <value>Kitchen &amp; Counter Designs</value>
+  </data>
+  <data name="Modern Ahşap Mutfak Tezgahı" xml:space="preserve">
+    <value>Modern Wooden Kitchen Counter</value>
+  </data>
+  <data name="Doğal Kenarlı Ahşap Yemek Masası" xml:space="preserve">
+    <value>Live-Edge Wooden Dining Table</value>
+  </data>
+  <data name="Kütük Ahşap TV Sehpası" xml:space="preserve">
+    <value>Solid Wood TV Console</value>
+  </data>
+  <data name="Modern Resepsiyon Bankosu" xml:space="preserve">
+    <value>Modern Reception Desk</value>
+  </data>
+  <data name="Cam Kaplama Ahşap Orta Sehpa" xml:space="preserve">
+    <value>Glass-Top Wooden Coffee Table</value>
+  </data>
+  <data name="Metal Ayaklı Ahşap Toplantı Masası" xml:space="preserve">
+    <value>Metal-Leg Wooden Conference Table</value>
+  </data>
+  <data name="X Metal Ayaklı Bahçe Masası" xml:space="preserve">
+    <value>X-Leg Wooden Garden Table</value>
+  </data>
+  <data name="Modern Duvar Tipi TV Ünitesi" xml:space="preserve">
+    <value>Modern Wall-Mounted TV Unit</value>
+  </data>
+  <data name="Döküm Ayaklı Klasik Ahşap Masa" xml:space="preserve">
+    <value>Cast-Leg Classic Wooden Table</value>
+  </data>
+</root>

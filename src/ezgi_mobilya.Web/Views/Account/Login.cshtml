@@ -8,11 +8,18 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Ezgi Craft Giriş</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="~/images/logo_assets/favicon-32.png" type="image/png" sizes="32x32" asp-append-version="true" />
+    <link rel="icon" href="~/images/logo_assets/favicon.ico" type="image/x-icon" asp-append-version="true" />
+    <link rel="apple-touch-icon" href="~/images/logo_assets/apple-touch-icon.png" sizes="180x180" asp-append-version="true" />
     <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" />
     <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-mobile.css" asp-append-version="true" />
     <script>
       (function() {
         var savedTheme = localStorage.getItem('ezgi-craft-theme') || 'light';
@@ -38,10 +45,6 @@
             max-width: 450px;
         }
         .login-brand {
-            color: var(--color-primary);
-            font-weight: 800;
-            font-size: 2rem;
-            letter-spacing: 1px;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -50,8 +53,9 @@
 <body>
 
     <div class="login-card">
-        <div class="login-brand text-uppercase">
-            <i class="fas fa-hammer mr-2"></i> Ezgi Craft
+        <div class="login-brand">
+            <img src="~/images/logo_assets/logo_nav.png" alt="Ezgi Craft" class="login-brand-logo login-brand-logo--dark" width="356" height="120" asp-append-version="true" />
+            <img src="~/images/logo_assets/logo_nav_white.png" alt="" class="login-brand-logo login-brand-logo--light" width="356" height="120" aria-hidden="true" asp-append-version="true" />
         </div>
         
         <h3 class="h5 mb-4 text-center text-muted" style="font-weight: 600;">Yönetim Paneli Girişi</h3>

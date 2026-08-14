@@ -1,62 +1,92 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@{
+    var phoneUrl = Configuration["SiteContact:PhoneUrl"];
+    var whatsappUrl = Configuration["SiteContact:WhatsAppUrl"];
+    var hasPhoneCta = !string.IsNullOrWhiteSpace(phoneUrl);
+    var hasWhatsAppCta = !string.IsNullOrWhiteSpace(whatsappUrl);
+    var showMobileCta = hasPhoneCta || hasWhatsAppCta;
+}
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri</title>
-    <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick.css">
-    <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick-theme.css">
-    <link rel="stylesheet" href="~/themes/infinite-loop/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/themes/infinite-loop/css/tooplate-infinite-loop.css" />
-    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" />
-    <script>
-      (function() {
-        var savedTheme = localStorage.getItem('ezgi-craft-theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      })();
-    </script>
+    <meta name="description" content="@Localizer["Meta_Description"]" />
+    <meta name="theme-color" content="#FAF6F0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>@Localizer["Meta_Title"]</title>
+    <link rel="icon" href="~/images/logo_assets/favicon-32.png" type="image/png" sizes="32x32" asp-append-version="true" />
+    <link rel="icon" href="~/images/logo_assets/favicon-16.png" type="image/png" sizes="16x16" asp-append-version="true" />
+    <link rel="icon" href="~/images/logo_assets/favicon.ico" type="image/x-icon" asp-append-version="true" />
+    <link rel="apple-touch-icon" href="~/images/logo_assets/apple-touch-icon.png" sizes="180x180" asp-append-version="true" />
+    <link rel="manifest" href="~/site.webmanifest" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="preload" as="image" type="image/webp" href="~/images/products/dogal-ahsap-masa-hero.webp" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/themes/infinite-loop/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/themes/infinite-loop/css/tooplate-infinite-loop.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ezgi-craft-mobile.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/themes/infinite-loop/fontawesome-5.5/css/all.min.css" media="print" data-defer-css asp-append-version="true" />
+    <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick.css" media="print" data-defer-css asp-append-version="true" />
+    <link rel="stylesheet" href="~/themes/infinite-loop/slick/slick-theme.css" media="print" data-defer-css asp-append-version="true" />
+    <link rel="stylesheet" href="~/themes/infinite-loop/magnific-popup/magnific-popup.css" media="print" data-defer-css asp-append-version="true" />
+
+    <script src="~/js/ezgi-early.js" asp-append-version="true"></script>
 <!--
 Tooplate 2117 Infinite Loop
 https://www.tooplate.com/view/2117-infinite-loop
 -->
-
+    @await RenderSectionAsync("Styles", required: false)
   </head>
-  <body>    
+  <body class="@(showMobileCta ? "tm-has-mobile-cta" : null)">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
-      <div class="container">   
+    <nav class="navbar navbar-expand-lg tm-navbar" id="tmNav">
+      <div class="container">
         <div class="tm-next">
-            <a href="#infinite" class="navbar-brand">Ezgi Craft</a>
-        </div>             
-          
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars navbar-toggler-icon"></i>
+            <a href="#infinite" class="navbar-brand" aria-label="@Localizer["Logo_Aria"]">
+              <img src="~/images/logo_assets/logo_nav.png" alt="Ezgi Craft" class="navbar-brand-logo navbar-brand-logo--dark" width="356" height="120" asp-append-version="true" />
+              <img src="~/images/logo_assets/logo_nav_white.png" alt="" class="navbar-brand-logo navbar-brand-logo--light" width="356" height="120" aria-hidden="true" asp-append-version="true" />
+            </a>
+        </div>
+
+        <button class="navbar-toggler tm-mobile-menu-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@Localizer["Nav_Toggle"]">
+          <span class="tm-hamburger" aria-hidden="true">
+            <span class="tm-hamburger-line"></span>
+            <span class="tm-hamburger-line"></span>
+            <span class="tm-hamburger-line"></span>
+          </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#infinite">Ana Sayfa</a>
+                <a class="nav-link tm-nav-link" href="#infinite">@Localizer["Nav_Home"]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#whatwedo">Hakkımızda</a>
+                <a class="nav-link tm-nav-link" href="#whatwedo">@Localizer["Nav_About"]</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link tm-nav-link" href="#testimonials">Değerlerimiz</a>
+              <a class="nav-link tm-nav-link" href="#testimonials">@Localizer["Nav_Values"]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#gallery">Koleksiyonumuz</a>
+                <a class="nav-link tm-nav-link" href="#materials">@Localizer["Nav_Materials"]</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#contact">Sipariş & İletişim</a>
+                <a class="nav-link tm-nav-link" href="#gallery">@Localizer["Nav_Gallery"]</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#contact">@Localizer["Nav_Contact"]</a>
             </li>                    
-            <li class="nav-item d-flex align-items-center justify-content-center">
-                <button id="themeToggle" class="theme-toggle-btn" title="Karanlık/Aydınlık Mod" aria-label="Karanlık/Aydınlık Mod">
+            <li class="nav-item d-flex align-items-center justify-content-center tm-nav-tools">
+                <partial name="_LanguageSwitcher" />
+                <button id="themeToggle" class="theme-toggle-btn" title="@Localizer["ThemeToggle"]" aria-label="@Localizer["ThemeToggle"]">
                     <i class="fas fa-moon"></i>
                 </button>
             </li>
@@ -66,246 +96,68 @@ https://www.tooplate.com/view/2117-infinite-loop
     </nav>
 
     <!-- Hero section -->
-    <section id="infinite" class="text-white tm-font-big tm-parallax">
-      <div class="container h-100 d-flex align-items-center">
-        <div class="row w-100 align-items-center" style="margin-top: 50px;">
-          <div class="col-lg-6 text-left tm-hero-left-content">
-            <span class="tm-hero-badge mb-3 d-inline-block">DOĞANIN DOKUSU, ELİN EMEĞİ</span>
-            <h1 class="tm-hero-title mb-4">Ezgi Craft</h1>
-            <p class="tm-hero-subtitle mb-4">
-              Doğal ahşabın sıcaklığını ve el emeğinin estetiğini yaşam alanlarınızla buluşturuyoruz. Sürdürülebilir ormanlardan seçilen özel parçalar, atölyemizde modern ve minimalist sanat eserlerine dönüşüyor.
+    <section id="infinite" class="tm-hero-section text-white">
+      <div class="tm-hero-overlay"></div>
+      <div class="container h-100 d-flex align-items-center tm-hero-container">
+        <div class="row w-100 align-items-center tm-hero-row">
+          <div class="col-lg-8 mx-auto text-center tm-hero-content">
+            <span class="tm-hero-badge mb-3 d-inline-block">@Localizer["Hero_Header"]</span>
+            <h1 class="tm-hero-title mb-4">@Localizer["Hero_Title"]</h1>
+            <p class="tm-hero-subtitle mb-5">
+              @Localizer["Hero_Subtitle"]
             </p>
-            <div class="mt-4">
-              <a href="#gallery" class="btn tm-btn-primary px-4 py-3 mr-3 font-weight-bold" style="border-radius: 4px !important;">Koleksiyonu Keşfet</a>
-              <a href="#contact" class="btn btn-outline-light px-4 py-3 font-weight-bold btn-hero-outline" style="border-radius: 4px !important; border-width: 2px;">İletişime Geç</a>
-            </div>
-          </div>
-          <div class="col-lg-6 d-none d-lg-block text-right">
-            <div class="tm-hero-image-frame">
-              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='/themes/infinite-loop/img/toy-hero.jpg';" class="img-fluid" alt="Ezgi Craft Ahşap Sanatı" />
+            <div class="tm-hero-buttons">
+              <a href="#gallery" class="btn tm-btn-primary tm-hero-btn">@Localizer["Hero_FirstButton"]</a>
+              <a href="#contact" class="btn btn-outline-light tm-hero-btn tm-hero-btn-outline">@Localizer["Hero_SecondButton"]</a>
             </div>
           </div>
         </div>
+      </div>
+      <div class="tm-scroll-down-indicator">
+        <a href="#whatwedo" class="tm-scroll-down-link" aria-label="@Localizer["ScrollDown"]">
+          <span class="tm-scroll-down-mouse">
+            <span class="tm-scroll-down-wheel"></span>
+          </span>
+        </a>
       </div>      
     </section>
 
     @RenderBody()
 
-    
-    <script src="~/themes/infinite-loop/js/jquery-1.9.1.min.js"></script>     
-    <script src="~/themes/infinite-loop/slick/slick.min.js"></script>
-    <script src="~/themes/infinite-loop/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="~/themes/infinite-loop/js/easing.min.js"></script>
-    <script src="~/themes/infinite-loop/js/jquery.singlePageNav.min.js"></script>     
-    <script src="~/themes/infinite-loop/js/bootstrap.min.js"></script> 
-    <script>
-
-      function getOffSet(){
-        var _offset = 450;
-        var windowHeight = window.innerHeight;
-
-        if(windowHeight > 500) {
-          _offset = 400;
-        } 
-        if(windowHeight > 680) {
-          _offset = 300
+    @if (showMobileCta)
+    {
+      <nav class="tm-mobile-cta" aria-label="@Localizer["MobileCta_Label"]">
+        @if (hasPhoneCta)
+        {
+          <a class="tm-mobile-cta-btn tm-mobile-cta-btn--primary" href="@phoneUrl">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <span>@Localizer["MobileCta_Call"]</span>
+          </a>
         }
-        if(windowHeight > 830) {
-          _offset = 210;
+        @if (hasWhatsAppCta)
+        {
+          <a class="tm-mobile-cta-btn @(hasPhoneCta ? "tm-mobile-cta-btn--secondary" : "tm-mobile-cta-btn--primary")" href="@whatsappUrl" target="_blank" rel="nofollow noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <span>@Localizer["MobileCta_WhatsApp"]</span>
+          </a>
         }
-
-        return _offset;
-      }
-
-      function setParallaxPosition($doc, multiplier, $object){
-        var offset = getOffSet();
-        var from_top = $doc.scrollTop(),
-          bg_css = 'center ' +(multiplier * from_top - offset) + 'px';
-        $object.css({"background-position" : bg_css });
-      }
-
-      // Parallax function
-      // Adapted based on https://codepen.io/roborich/pen/wpAsm        
-      var background_image_parallax = function($object, multiplier, forceSet){
-        multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
-        multiplier = 1 - multiplier;
-        var $doc = $(document);
-        // $object.css({"background-attatchment" : "fixed"});
-
-        if(forceSet) {
-          setParallaxPosition($doc, multiplier, $object);
-        } else {
-          $(window).scroll(function(){          
-            setParallaxPosition($doc, multiplier, $object);
-          });
+        else
+        {
+          <a class="tm-mobile-cta-btn tm-mobile-cta-btn--secondary" href="#contact">
+            <i class="far fa-envelope" aria-hidden="true"></i>
+            <span>@Localizer["MobileCta_Message"]</span>
+          </a>
         }
-      };
+      </nav>
+    }
 
-      var background_image_parallax_2 = function($object, multiplier){
-        multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
-        multiplier = 1 - multiplier;
-        var $doc = $(document);
-        $object.css({"background-attachment" : "fixed"});
-        
-        $(window).scroll(function(){
-          if($(window).width() > 768) {
-            var firstTop = $object.offset().top,
-                pos = $(window).scrollTop(),
-                yPos = Math.round((multiplier * (firstTop - pos)) - 186);              
-
-            var bg_css = 'center ' + yPos + 'px';
-
-            $object.css({"background-position" : bg_css });
-          } else {
-            $object.css({"background-position" : "center" });
-          }
-        });
-      };
-      
-      $(function(){
-        // Theme Toggle Logic
-        var themeToggleBtn = document.getElementById('themeToggle');
-        var themeIcon = themeToggleBtn.querySelector('i');
-        
-        function updateToggleIcon(theme) {
-          if (theme === 'dark') {
-            themeIcon.className = 'fas fa-sun';
-          } else {
-            themeIcon.className = 'fas fa-moon';
-          }
-        }
-        
-        // Initial setup of the icon
-        var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        updateToggleIcon(currentTheme);
-        
-        themeToggleBtn.addEventListener('click', function() {
-          var current = document.documentElement.getAttribute('data-theme') || 'light';
-          var nextTheme = current === 'dark' ? 'light' : 'dark';
-          
-          document.documentElement.setAttribute('data-theme', nextTheme);
-          localStorage.setItem('ezgi-craft-theme', nextTheme);
-          updateToggleIcon(nextTheme);
-        });
-
-        $("#infinite").css({"background-position" : "center center"});
-        background_image_parallax_2($("#contact"), 0.80);   
-        background_image_parallax_2($("#testimonials"), 0.80);   
-        
-        // Handle window resize
-        window.addEventListener('resize', function(){
-          $("#infinite").css({"background-position" : "center center"});
-        }, true);
-
-        // Detect window scroll and update navbar
-        $(window).scroll(function(e){          
-          if($(document).scrollTop() > 120) {
-            $('.tm-navbar').addClass("scroll");
-          } else {
-            $('.tm-navbar').removeClass("scroll");
-          }
-        });
-        
-        // Close mobile menu after click 
-        $('#tmNav a').on('click', function(){
-          $('.navbar-collapse').removeClass('show'); 
-        })
-
-        // Scroll to corresponding section with animation
-        $('#tmNav').singlePageNav({
-          'easing': 'easeInOutExpo',
-          'speed': 600
-        });        
-        
-        // Add smooth scrolling to all links
-        // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
-        $("a").on('click', function(event) {
-          if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-
-            $('html, body').animate({
-              scrollTop: $(hash).offset().top
-            }, 600, 'easeInOutExpo', function(){
-              window.location.hash = hash;
-            });
-          } // End if
-        });
-
-        // Pop up
-        $('.tm-gallery').magnificPopup({
-          delegate: 'a',
-          type: 'image',
-          gallery: { enabled: true }
-        });
-
-        $('.tm-testimonials-carousel').slick({
-          dots: true,
-          prevArrow: false,
-          nextArrow: false,
-          infinite: false,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          responsive: [
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 2
-              }
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2
-              }
-            }, 
-            {
-              breakpoint: 480,
-              settings: {
-                  slidesToShow: 1
-              }                 
-            }
-          ]
-        });
-
-        // Gallery
-        $('.tm-gallery').slick({
-          dots: true,
-          infinite: false,
-          slidesToShow: 5,
-          slidesToScroll: 2,
-          responsive: [
-          {
-            breakpoint: 1199,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 991,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-        });
-      });
-    </script>
+    <script src="~/themes/infinite-loop/js/jquery-1.9.1.min.js" defer></script>
+    <script src="~/themes/infinite-loop/slick/slick.min.js" defer></script>
+    <script src="~/themes/infinite-loop/magnific-popup/jquery.magnific-popup.min.js" defer></script>
+    <script src="~/themes/infinite-loop/js/easing.min.js" defer></script>
+    <script src="~/themes/infinite-loop/js/jquery.singlePageNav.min.js" defer></script>
+    <script src="~/themes/infinite-loop/js/bootstrap.min.js" defer></script>
+    <script src="~/js/infinite-loop-site.js" defer asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
   </body>
 </html>

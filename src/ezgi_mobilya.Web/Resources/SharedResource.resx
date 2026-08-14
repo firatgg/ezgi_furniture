@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Meta_Title" xml:space="preserve">
+    <value>Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri</value>
+  </data>
+  <data name="Meta_Description" xml:space="preserve">
+    <value>Ezgi Craft — doğal ahşap mobilya, el yapımı dekorasyon ve butik craft ürünleri. Atölyemizde özenle üretilen zamansız tasarımları keşfedin.</value>
+  </data>
+  <data name="Logo_Aria" xml:space="preserve">
+    <value>Ezgi Craft Ana Sayfa</value>
+  </data>
+  <data name="Nav_Home" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="Nav_About" xml:space="preserve">
+    <value>Hakkımızda</value>
+  </data>
+  <data name="Nav_Values" xml:space="preserve">
+    <value>Değerlerimiz</value>
+  </data>
+  <data name="Nav_Materials" xml:space="preserve">
+    <value>Malzemelerimiz</value>
+  </data>
+  <data name="Nav_Gallery" xml:space="preserve">
+    <value>Galeri</value>
+  </data>
+  <data name="Nav_Contact" xml:space="preserve">
+    <value>İletişim</value>
+  </data>
+  <data name="ThemeToggle" xml:space="preserve">
+    <value>Karanlık/Aydınlık Mod</value>
+  </data>
+  <data name="Lang_Label" xml:space="preserve">
+    <value>Dil seçimi</value>
+  </data>
+  <data name="ScrollDown" xml:space="preserve">
+    <value>Aşağı Kaydır</value>
+  </data>
+  <data name="Nav_Toggle" xml:space="preserve">
+    <value>Menüyü aç veya kapat</value>
+  </data>
+  <data name="MobileCta_Label" xml:space="preserve">
+    <value>Hızlı iletişim</value>
+  </data>
+  <data name="MobileCta_Call" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="MobileCta_WhatsApp" xml:space="preserve">
+    <value>WhatsApp</value>
+  </data>
+  <data name="MobileCta_Message" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Hero_Header" xml:space="preserve">
+    <value>TASARLAYAN VE ÜRETEN BİZİZ</value>
+  </data>
+  <data name="Hero_Title" xml:space="preserve">
+    <value>Yaşam Alanınızı Sadeleştirin.</value>
+  </data>
+  <data name="Hero_Subtitle" xml:space="preserve">
+    <value>Doğal ahşabın sıcaklığını, el emeğinin kusursuzluğunu ve minimalist estetiği yaşam alanlarınıza taşıyoruz. Atölyemizde özenle şekillendirilen her parça, zamansız birer sanat eseridir.</value>
+  </data>
+  <data name="Hero_FirstButton" xml:space="preserve">
+    <value>Koleksiyonu Keşfet</value>
+  </data>
+  <data name="Hero_SecondButton" xml:space="preserve">
+    <value>İletişime Geç</value>
+  </data>
+  <data name="About_Header" xml:space="preserve">
+    <value>BİZ KİMİZ?</value>
+  </data>
+  <data name="About_Handmade" xml:space="preserve">
+    <value>100% EL YAPIMI</value>
+  </data>
+  <data name="About_ImageAlt" xml:space="preserve">
+    <value>Ezgi Craft Atölye ve El Emeği</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Tasarım, Malzeme ve El İşçiliğinin Uyumu</value>
+  </data>
+  <data name="About_P1" xml:space="preserve">
+    <value>Ezgi Craft olarak, doğallığı, estetiği ve el emeğini yaşam alanlarınıza taşıyoruz. Sadece birer mobilya değil; evinizi güzelleştirecek özgün ahşap tasarımlar, sanatsal dekorasyon ürünleri ve el yapımı özel tasarım craft ürünleri üretiyoruz. Atölyemizde özenle seçilen dayanıklı ahşaplar, usta ellerde hayat bularak benzersiz tasarımlara dönüşmektedir.</value>
+  </data>
+  <data name="About_P2" xml:space="preserve">
+    <value>Tıpkı doğanın kendisi gibi, ürettiğimiz her parça benzersizdir. Seri üretimin sıradanlığından uzak, her bir ayrıntısı üzerinde saatlerce çalışılmış butik tasarımlarımızla evinizde sıcak ve samimi bir atmosfer yaratmayı hedefliyoruz.</value>
+  </data>
+  <data name="About_Button" xml:space="preserve">
+    <value>Koleksiyonu İncele</value>
+  </data>
+  <data name="Feature1_Title" xml:space="preserve">
+    <value>Doğal &amp; Sağlıklı Ahşap</value>
+  </data>
+  <data name="Feature1_Desc" xml:space="preserve">
+    <value>Ürünlerimizde kayın, ceviz, zeytin ve akçaağaç gibi dayanıklı, sürdürülebilir ormanlardan elde edilen doğal dokusu güçlü ağaçlar tercih edilir.</value>
+  </data>
+  <data name="Feature2_Title" xml:space="preserve">
+    <value>Pürüzsüz &amp; Koruyucu Yüzeyler</value>
+  </data>
+  <data name="Feature2_Desc" xml:space="preserve">
+    <value>Tasarımlarımızın tamamı kıymık ve pürüzlerden arındırılmış, çocuk ve insan sağlığına zararsız doğal yağlarla korunmuş yüzeylere sahiptir.</value>
+  </data>
+  <data name="Feature3_Title" xml:space="preserve">
+    <value>Kusursuz Butik İşçilik</value>
+  </data>
+  <data name="Feature3_Desc" xml:space="preserve">
+    <value>Ahşap parçalar hassas atölye kesiminden sonra el zımparası ile tek tek zımparalanır, pürüzsüzleştirilir ve montaja hazır hale getirilir.</value>
+  </data>
+  <data name="Feature4_Title" xml:space="preserve">
+    <value>Özgün &amp; Minimalist Estetik</value>
+  </data>
+  <data name="Feature4_Desc" xml:space="preserve">
+    <value>Yaşam alanlarınıza dinginlik, huzur ve şıklık getiren, gereksiz tüm fazlalıklardan arındırılmış, fonksiyonel tasarımlar geliştiriyoruz.</value>
+  </data>
+  <data name="Values_Header" xml:space="preserve">
+    <value>STANDARTLARIMIZ</value>
+  </data>
+  <data name="Values_Title" xml:space="preserve">
+    <value>Değerlerimiz &amp; Standartlarımız</value>
+  </data>
+  <data name="Values_Desc" xml:space="preserve">
+    <value>Üretimde odak noktamız; yaşam alanlarınızla güvenle buluşturabileceğiniz doğal malzemeler, kusursuz el işçiliği ve zamansız tasarımlardır.</value>
+  </data>
+  <data name="Value1_Title" xml:space="preserve">
+    <value>Doğal Malzemeler</value>
+  </data>
+  <data name="Value1_Desc" xml:space="preserve">
+    <value>Ahşabın sıcaklığını ve eşsiz dokusunu koruyan, tamamen organik ve uzun ömürlü tasarımlar.</value>
+  </data>
+  <data name="Value2_Title" xml:space="preserve">
+    <value>Sağlıklı Dokunuşlar</value>
+  </data>
+  <data name="Value2_Desc" xml:space="preserve">
+    <value>Yuvarlatılmış yumuşak kenarlar, pürüzsüz yüzeyler ve kimyasal içermeyen doğal koruyucular.</value>
+  </data>
+  <data name="Value3_Title" xml:space="preserve">
+    <value>Butik Üretim</value>
+  </data>
+  <data name="Value3_Desc" xml:space="preserve">
+    <value>Tasarım, hassas kesim, el zımparası ve koruyucu yağlama adımları atölye özeniyle yapılır.</value>
+  </data>
+  <data name="Materials_Header" xml:space="preserve">
+    <value>DOĞAL MATERYALLER</value>
+  </data>
+  <data name="Materials_Title" xml:space="preserve">
+    <value>Doğanın En Seçkin Malzemeleri</value>
+  </data>
+  <data name="Materials_Desc" xml:space="preserve">
+    <value>Ürünlerimizde yalnızca dayanıklı, sürdürülebilir ve doğal dokusu güçlü ahşap malzemeler kullanıyoruz.</value>
+  </data>
+  <data name="Material1_Title" xml:space="preserve">
+    <value>Masif Ceviz</value>
+  </data>
+  <data name="Material1_Desc" xml:space="preserve">
+    <value>Zengin damar yapısı ve koyu tonlarıyla yemek masaları ile özel tasarım parçalarda tercih ettiğimiz lüks ahşap.</value>
+  </data>
+  <data name="Material2_Title" xml:space="preserve">
+    <value>Doğal Kayın</value>
+  </data>
+  <data name="Material2_Desc" xml:space="preserve">
+    <value>Açık tonlu, pürüzsüz yüzeyiyle sehpa ve TV ünitelerinde modern, ferah bir görünüm sunan dayanıklı ahşap.</value>
+  </data>
+  <data name="Material3_Title" xml:space="preserve">
+    <value>Kütük Ahşap</value>
+  </data>
+  <data name="Material3_Desc" xml:space="preserve">
+    <value>Doğal kenar detayları ve yaşayan dokusuyla her parçayı benzersiz kılan, atölyede özenle işlenen kütükler.</value>
+  </data>
+  <data name="Material4_Title" xml:space="preserve">
+    <value>Ahşap &amp; Metal</value>
+  </data>
+  <data name="Material4_Desc" xml:space="preserve">
+    <value>Endüstriyel metal ayaklar ile masif ahşap üst yüzeyin birleştiği, uzun ömürlü ve fonksiyonel tasarımlar.</value>
+  </data>
+  <data name="Gallery_Header" xml:space="preserve">
+    <value>ÖZGÜN TASARIMLAR</value>
+  </data>
+  <data name="Gallery_Title" xml:space="preserve">
+    <value>Galeri</value>
+  </data>
+  <data name="Gallery_Desc" xml:space="preserve">
+    <value>Doğadan ilham alan, her biri el emeğiyle özenle hazırlanan özgün ahşap craft ve dekorasyon ürünlerimizden seçkiler.</value>
+  </data>
+  <data name="Gallery_Empty" xml:space="preserve">
+    <value>Koleksiyonumuz yakında güncellenecektir.</value>
+  </data>
+  <data name="Contact_Title" xml:space="preserve">
+    <value>Sipariş &amp; İletişim</value>
+  </data>
+  <data name="Contact_Intro" xml:space="preserve">
+    <value>Sipariş ve ürün bilgisi için aşağıdaki iletişim kanallarından bize ulaşabilir ya da doğrudan mesaj gönderebilirsiniz.</value>
+  </data>
+  <data name="Contact_InfoTitle" xml:space="preserve">
+    <value>İletişim Bilgilerimiz</value>
+  </data>
+  <data name="Contact_NoChannels" xml:space="preserve">
+    <value>Doğrulanmış iletişim kanalları yakında eklenecektir.</value>
+  </data>
+  <data name="Contact_FormTitle" xml:space="preserve">
+    <value>Hızlı İletişim Formu</value>
+  </data>
+  <data name="Contact_Name" xml:space="preserve">
+    <value>Adınız Soyadınız *</value>
+  </data>
+  <data name="Contact_Email" xml:space="preserve">
+    <value>E-posta Adresiniz *</value>
+  </data>
+  <data name="Contact_Subject" xml:space="preserve">
+    <value>Konu Başlığı</value>
+  </data>
+  <data name="Contact_Message" xml:space="preserve">
+    <value>Mesajınız... *</value>
+  </data>
+  <data name="Contact_Submit" xml:space="preserve">
+    <value>MESAJI GÖNDER</value>
+  </data>
+  <data name="Contact_Success" xml:space="preserve">
+    <value>Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.</value>
+  </data>
+  <data name="Contact_Error" xml:space="preserve">
+    <value>Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Contact_Invalid" xml:space="preserve">
+    <value>Lütfen form alanlarını doğru doldurduğunuzdan emin olun.</value>
+  </data>
+  <data name="Footer_Copyright" xml:space="preserve">
+    <value>Copyright © {0} Ezgi Craft - Doğal Ahşap Tasarımları &amp; Sanat Ürünleri</value>
+  </data>
+</root>
