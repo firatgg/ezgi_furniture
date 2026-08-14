@@ -95,6 +95,9 @@ namespace ezgi_mobilya.Service.Services
 
             using var client = new SmtpClient();
             client.Timeout = 20000;
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            client.AuthenticationMechanisms.Remove("GSSAPI");
+            client.AuthenticationMechanisms.Remove("NTLM");
 
             await client.ConnectAsync(host, port, socketOptions, cancellationToken);
 

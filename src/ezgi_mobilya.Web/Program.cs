@@ -7,6 +7,7 @@ using ezgi_mobilya.Data.UnitOfWorks;
 using ezgi_mobilya.Service;
 using ezgi_mobilya.Web.Localization;
 using ezgi_mobilya.Web.Middlewares;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -60,6 +61,15 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
+
+var dataProtectionKeysPath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+    ".aspnet",
+    "DataProtection-Keys");
+Directory.CreateDirectory(dataProtectionKeysPath);
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysPath))
+    .SetApplicationName("ezgi-mobilya");
 
 // Configure Application Cookie Options for Authorization redirects
 builder.Services.ConfigureApplicationCookie(options =>
